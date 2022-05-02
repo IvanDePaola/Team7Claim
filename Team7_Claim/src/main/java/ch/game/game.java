@@ -60,6 +60,7 @@ public class game {
 		comingFrom.removeCard(0);
 	}
 	
+	//FURKAN
 	// Start vom Code für den 1. Spielzug
 		
 	public void submitPlayerCard(String pid, Card card, Card.value declaredValue)
