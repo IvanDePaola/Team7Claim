@@ -1,6 +1,6 @@
 package ch.team7.model;
 
-
+@Entity
 public class User {
 	
 	private Long id;
