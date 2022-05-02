@@ -61,7 +61,7 @@ public class game {
 	}
 	
 	//FURKAN
-	// Start vom Code für den 1. Spielzug
+	// Start vom Code fÃ¼r den 1. Spielzug
 		
 	public void submitPlayerCard(String pid, Card card, Card.value declaredValue)
 	throw InvalidRaceSubmission {
@@ -88,4 +88,6 @@ public class game {
 	this.expected = expected;
 		}
 	}
+	
+	//test dea obs funktioniert
 	
