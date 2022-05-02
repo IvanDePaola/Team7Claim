@@ -1,4 +1,4 @@
-package ch.team7.model;
+package main.java.ch.model;
 
 import java.util.ArrayList;
 

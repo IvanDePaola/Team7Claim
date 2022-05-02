@@ -1,21 +1,21 @@
-package ch.team;
+package main.java.ch.team;
 
-import ch.team7.game.game;
+import main.java.ch.game.Game;
 
 public class Team7ClaimApp {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		//Creates our playind deck
-		game deckList = new game();
+		//Creates our playing deck
+		Game deckList = new Game();
 		deckList.createFullDeck();
 		deckList.shuffle();
 		
 		//creates a deck for the player
-		game myCards = new game();
+		Game myCards = new Game();
 		
-		game opCards = new game();
+		Game opCards = new Game();
 		
 		//Karten austeilen
 		for (int i = 1; i <= 10; i++) {
@@ -26,6 +26,8 @@ public class Team7ClaimApp {
 			opCards.draw(opCards);
 		}
 		
+		//Starter Karte
+		deckList.draw(deckList);
 		
 		
 	}
