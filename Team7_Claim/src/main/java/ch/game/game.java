@@ -15,7 +15,7 @@ public class game {
 	private ArrayList<Card> myCards;
 	private ArrayList<Card> opCards;
 	
-	// BITTE AB HIE @ANDREA
+	// BITTE AB HIE @ANDREA DANKE DIR
 	public void shuffle() {
 		ArrayList<Card>tempDeck = new ArrayList<Card>();
 		Random random = new Random();
