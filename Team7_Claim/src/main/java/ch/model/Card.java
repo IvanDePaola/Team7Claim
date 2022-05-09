@@ -1,4 +1,4 @@
-package main.java.ch.model;
+package ch.model;
 
 public class Card {
 	//@Author Furkan

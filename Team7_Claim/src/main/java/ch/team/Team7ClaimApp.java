@@ -1,4 +1,4 @@
-package main.java.ch.team;
+package ch.team;
 
 import main.java.ch.game.Game;
 

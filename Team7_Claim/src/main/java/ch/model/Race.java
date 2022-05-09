@@ -1,4 +1,4 @@
-package ch.team7.model;
+package ch.model;
 
 public enum Race {
 

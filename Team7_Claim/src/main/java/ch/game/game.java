@@ -1,4 +1,4 @@
-package ch.team7.game;
+package ch.game;
 
 import java.awt.Font;
 import java.util.ArrayList;
@@ -7,7 +7,7 @@ import java.util.Random;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import ch.team7.model.Card;
+import ch.model.Card;
 
 public class game {
 

@@ -1,4 +1,4 @@
-package main.java.ch.model;
+package ch.model;
 
 import java.util.ArrayList;
 
