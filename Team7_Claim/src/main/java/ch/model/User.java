@@ -4,6 +4,7 @@ import java.util.Random;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
@@ -17,18 +18,26 @@ public class User {
 	private String userName;
 	private String email;
 	private String password;
-	private String userRolle;
 	private boolean verifaction;
 	private int winner;
 	private int loser;
 	private int gamesPlayed;
 	private int score;
+	private int token;
 	
 	
 	//Getters and setters
 	
+	
+	
 	public Long getId() {
 		return id;
+	}
+	public int getToken() {
+		return token;
+	}
+	public void setToken(int token) {
+		this.token = token;
 	}
 	public void setId(Long id) {
 		this.id = id;
@@ -51,12 +60,7 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getUserRolle() {
-		return userRolle;
-	}
-	public void setUserRolle(String userRolle) {
-		this.userRolle = userRolle;
-	}
+
 	public boolean isVerifaction() {
 		return verifaction;
 	}
@@ -92,12 +96,11 @@ public class User {
 	
 	public void increaseWinner() {
 		this.winner++;
-		this.score += 40;
+		this.score += 10;
 	}
 	
 	public void increaseLoser() {
 		this.loser++;
-		this.score += 10;
 	}
 	
 	public void increaseGamesPlayed() {
@@ -111,13 +114,11 @@ public class User {
 	}	
 	
 	// constructor
-	public User(String userName, String email, String password, String userRolle, boolean verifaction,
-			int winner, int loser, int gamesPlayed, int score) {
+	public User(String userName, String email, String password) {
 		super();
 		this.userName = userName;
 		this.email = email;
 		this.password = password;
-		this.userRolle = userRolle;
 		this.verifaction = false;
 		this.winner = 0;
 		this.loser = 0;
