@@ -11,11 +11,12 @@ var phase = 1
 
 var myClaimedCards = [];
 var enemyClaimedCards = [];
-var myHeroes = [];//ändern
-var enemyHeroes = []; //ändern
-var enemyCard 
-var myCard
+var myHeroes = [];
+var enemyHeroes = []; 
+var enemyCardPlayed 
+var myCardPlayed
 var myHand = []
+var winableCard
 
 //distributeCards
 function gameStart(cards){
@@ -47,9 +48,9 @@ function calculateMove(){
 	await sleep(2000);
 
 	if (myTurn) {
-		switch (myCard.race) {
+		switch (myCardPlayed.race) {
 			case "Knights":
-				switch (enemyCard.race) {
+				switch (enemyCardPlayed.race) {
 					case "Knights":
 						calculateWinner()
 						break;
@@ -61,7 +62,7 @@ function calculateMove(){
 				}
 				break;
 			case "Doppelgaenger":
-				switch (enemyCard.race) {
+				switch (enemyCardPlayed.race) {
 					case "Doppelgaenger":
 						calculateWinner()
 						break;
@@ -70,7 +71,7 @@ function calculateMove(){
 				}
 				break;
 			case "Dwarfs":
-				switch (enemyCard.race) {
+				switch (enemyCardPlayed.race) {
 					case "Dwarfs":
 						calculateWinner()
 						break;
@@ -82,7 +83,7 @@ function calculateMove(){
 				}
 				break;
 			case "Goblin":
-				switch (enemyCard.race) {
+				switch (enemyCardPlayed.race) {
 					case "Knights":
 						opWin()
 						break;
@@ -97,7 +98,7 @@ function calculateMove(){
 				}
 				break;
 			case "Undead":
-				switch (enemyCard.race) {
+				switch (enemyCardPlayed.race) {
 					case "Undead":
 						calculateWinner()
 						break;
@@ -109,9 +110,9 @@ function calculateMove(){
 				}
 		}
 	} else {
-		switch (enemyCard.race) {
+		switch (enemyCardPlayed.race) {
 			case "Knights":
-				switch (myCard.race) {
+				switch (myCardPlayed.race) {
 					case "Knights":
 						calculateWinner()
 						break;
@@ -123,7 +124,7 @@ function calculateMove(){
 				}
 				break;
 			case "Doppelgaenger":
-				switch (myCard.race) {
+				switch (myCardPlayed.race) {
 					case "Doppelgaenger":
 						calculateWinner()
 						break;
@@ -132,7 +133,7 @@ function calculateMove(){
 				}
 				break;
 			case "Dwarfs":
-				switch (myCard.race) {
+				switch (myCardPlayed.race) {
 					case "Doppelgaenger":
 						calculateWinner()
 						break
@@ -144,7 +145,7 @@ function calculateMove(){
 				}
 				break;
 			case "Goblin":
-				switch (myCard.race) {
+				switch (myCardPlayed.race) {
 					case "Knights":
 						myWin()
 						break
@@ -159,7 +160,7 @@ function calculateMove(){
 				}
 				break;
 			case "Undead":
-				switch (myCard.race) {
+				switch (myCardPlayed.race) {
 					case "Undead":
 						calculateWinner()
 						break
@@ -187,23 +188,15 @@ function calculateMove(){
 }
 
 //TODO HTML elemente und translator
-function makeMove(clickedSrc, clickedId, playable) {
+function makeMove(clickedSrc, position, playable) {
 		
 	if (playable == "true") {
-
-		var split = clickedId.split(".")
-		removeFromHand(split[0], split[1], split[2])
-		showMyPlaycard(clickedSrc, clickedId)
-		myCard.setAttribute("played", 1);
+		removeFromHand(position)
+		showMyPlaycard(clickedSrc)
+		myCardPlayed = handList[position]
 		setPlayable()
 		if (checkIfPlayed()) {
 			calculateMove();
-		}
-	} else {
-		if(	sessionStorage.getItem("languageBoo") == "en"){		
-		alert("It's not your turn or this card is not playable'");
-		} else {
-			alert("Du bist nicht dran oder die Karte ist nicht spielbar");
 		}
 	}
 }
@@ -212,61 +205,56 @@ function makeMove(clickedSrc, clickedId, playable) {
 //HTML stuff hier wird Karte angezeigt um die gespielt wird
 function setWinnableCard(card) {
 	document.getElementById("WinnableCard").src = createPath(card);
-	document.getElementById("WinnableCard").alt = card.race + "." + card.value;
+	winableCard = card
 }
 //HTML karte die ich spiele
-function showMyPlaycard(source, id) {
+function showMyPlaycard(source) {
 	document.getElementById("playcard").src = source;
-	document.getElementById("playcard").alt = id
 	document.getElementById("playcard").style.visibility = "visible"
 
 }
 //HTML karte die gegener gespielt hat
 function showEnemyPlaycard(card) {
-	enemyPlayedcard = document.getElementById("opPlaycard");
-	enemyPlayedcard.src = createPath(card);
-	enemyPlayedcard.style.visibility = "visible"
-	enemyPlayedcard.setAttribute("played", 1);
-	enemyCard = card;
-	setPlayable()
-	removeFromEnemyHand(card.race, card.value)
+	enemyP = document.getElementById("opPlaycard");
+	enemyP.src = createPath(card);
+	enemyP.style.visibility = "visible"
+	enemyCardPlayed = card;	
 
-	if (checkIfPlayed()) {
+	setPlayable()
+	removeFromEnemyHand()
+
+	if (myCardPlayed != null && enemyCardPlayed != null) {
 		calculateMove();
 	}
 
 }
 
-var goblinCount;
-//TODO HTML Elemente
-function setHand() {
-	
-	opCard.style.visibility = "hidden"
-	myCard.style.visibility = "hidden"
-	
-	var goblinCount = 0;
- 	var v = 0;
-  	myHand.forEach((card) => { 
-	var elem = document.getElementById("card" + v)
-  	elem.src = createPath(card);
-  	if(card.race == "Goblin" && card.value == 0){
-		elem.id = card.race + "." + card.value + "." + goblinCount
-		goblinCount++
-	}else{
-  		elem.id = card.race + "." + card.value;
-    }
-    elem.style.visibility = "visible"
-    if(round == 1){
-		elem.addEventListener("dblclick", () => {
-			makeMove(elem.src, elem.id, elem.alt )
-		})
-	}
-	
-    v++;
-  	});
-  	setPlayable()
-  	
+var handList = []
+
+
+function fillHandList(cards){
+	cards.forEach((card) => {
+		handList.push(card)
+	});
 }
+
+function showHandList(){
+	for(var i = 0; i<15; i++){
+		handCard = document.getElementById("handCard" + i)
+		if(handList[i] != null){
+			handCard.src = createPath(handList[i])
+			handCard.race = card.race
+			handCard.value = card.value
+		}else{
+			handCard.style.visibility = "hidden"
+			handCard.race = null
+			handCard.value = null
+		}
+	}
+	setPlayable()
+}
+  	
+  	
 // hier wird die opHand angezeigt (13x rückseite von karte)
 function setOpHand() {
 	for (var v = 0; v < 13; v++) {
@@ -307,7 +295,6 @@ function showScore() {
 
 //*****************Helpers*******************
 
-var clearCount = 0;
 var clearCountOp = 0;
 
 //generiert path zum bild anzeigen
@@ -316,34 +303,13 @@ function createPath(card) {
 }
 
 //HTML elemente Karte wird aus hand entfernt
-function removeFromHand(races, values, goblin) {
-
-	for (var i = 0; i < myHand.length; i++) {
-		if (myHand[i].race == races && myHand[i].value == values) {
-			sendMove(myHand[i]);
-			myCard = myHand[i];
-      		myHand.splice(i, 1)
-      
-      		if(races == "Goblin" && values == 0){
-				var elem = document.getElementById( races + "." + values + "." + goblin)
-			}else{
-      			var elem = document.getElementById( races + "." + values)
-      		}
-      		elem.style.visibility = "hidden";
-      		elem.id = "card" + clearCount
-      		clearCount ++
-      		break
-    }
-  }
+function removeFromHand(position) {
+	handList[position] = null
+	document.getElementById("handCard" +position).style.visibility = "hidden"
 
 }
 //HTML element löscht eine karte vom gegner hand
-function removeFromEnemyHand(races, values) {
-
-	for (var i = 0; i < opCards.length; i++) {
-		if (opCards[i].race == races && opCards[i].value == values) {
-			enemyCard = opCards[i]
-			opCards.splice(i, 1)
+function removeFromEnemyHand() {
 
 			var elem = document.getElementById("opCard" + clearCountOp)
 			elem.style.visibility = "hidden";
@@ -351,138 +317,64 @@ function removeFromEnemyHand(races, values) {
 			if (clearCountOp == 12) {
 				clearCountOp = 0
 			}
-			break
-		}
+		
 	}
-
-}
 
 //HTML elemente sucht Karten die gespielt werden können der .alt wert ist true oder false je nach spielbarkeit (truecount schaut ob überhaupt eine spielbare karte vorhanden ist)
 function setPlayable() {
 	var trueCount = 0
-	var dwarfSetter = 0
-	var indicator = false;
 	
-	myHand.forEach((card) => {
-		if (isTurn == true && myCard == null) {
-			if(card.race == "Goblin" && card.value == 0){
-					if(document.getElementById(card.race + "." + card.value + "." + dwarfSetter) != null){
-					document.getElementById(card.race + "." + card.value + "." + dwarfSetter).alt = "true"
-						trueCount++
-						dwarfSetter++
-						indicator = true
-					}
-			}else{
-				document.getElementById(card.race + "." + card.value).alt = "true"
+	for (var i = 0; i< handList.length; i++){
+		if(card != null){
+			if (isTurn == true && myCardPlayed == null) {
 				trueCount++
-				indicator = true
-			}		
+				document.getElementById("handCard" + i).alt = "true"
+			}	
 		} else {
 			if (isTurn == true) {
-				if(card.race == "Goblin" && card.value == 0){
-					if(document.getElementById(card.race + "." + card.value + "." + dwarfSetter) != null){
-						document.getElementById(card.race + "." + card.value + "." + dwarfSetter).alt = "false"
-						trueCount++
-						dwarfSetter++
-					}
-				}else{
-					document.getElementById(card.race + "." + card.value).alt = "false"
-					trueCount++
-				}
+					document.getElementById("handCard" + i).alt = "false"				
 			} else {
-				if (enemyCard == null) {
-					if(card.race == "Goblin" && card.value == 0){
-						if(document.getElementById(card.race + "." + card.value + "." + dwarfSetter) != null){
-							document.getElementById(card.race + "." + card.value + "." + dwarfSetter).alt = "false"
-							trueCount++
-							dwarfSetter++
-					}
-					}else{
-						document.getElementById(card.race + "." + card.value).alt = "false"
-						trueCount++
-						}
+				if (enemyCardPlayed == null) {
+					document.getElementById("handCard" +i).alt = "false"
+	
 				} else {
-					if (myCard == null) {
-						if (card.race == "Doppelgaenger") {
-							document.getElementById(card.race + "." + card.value).alt = "true"
+					if (myCardPlayed == null) {
+						if (handList[i].race == "Doppelgaenger") {
+							document.getElementById("handCard" + i).alt = "true"
 							trueCount++
-							indicator = true
 						} else {
-							if (enemyCard.race == card.race) {
-								if(card.race == "Goblin" && card.value == 0){
-									if(document.getElementById(card.race + "." + card.value + "." + dwarfSetter) != null){
-										document.getElementById(card.race + "." + card.value + "." + dwarfSetter).alt = "true"
-										trueCount++
-										dwarfSetter++
-										indicator = true
-									}
-								}else{
-									document.getElementById(card.race + "." + card.value).alt = "true"
-									trueCount++
-									indicator = true
+							if (enemyCardPlayed.race == handList[i].race) {
+								document.getElementById("handCard" + i).alt = "true"
+								trueCount++		
+							}else{
+								document.getElementById("handCard" + i).alt = "true"
 								}
-							} else {
-								if(card.race == "Goblin" && card.value == 0){
-									if(document.getElementById(card.race + "." + card.value + "." + dwarfSetter) != null){
-										document.getElementById(card.race + "." + card.value + "." + dwarfSetter).alt = "false"
-										dwarfSetter++
-										indicator = true
-									}
-								}else{
-								document.getElementById(card.race + "." + card.value).alt = "false"
-								indicator = true
-								}
-							}
-						}
-					} else {
-						if(card.race == "Goblin" && card.value == 0){
-							if(document.getElementById(card.race + "." + card.value + "." + dwarfSetter) != null){
-								document.getElementById(card.race + "." + card.value + "." + dwarfSetter).alt = "false"
-								trueCount++
-								dwarfSetter++
-								}
-						}else{
-						document.getElementById(card.race + "." + card.value).alt = "false"
-						trueCount++
+
 						}
 					}
 				}
 			}
 		}
-	});
-	dwarfSetter = 0;
+	}
+
 	if (trueCount == 0) {
-		myHand.forEach((card) => {
-			if(card.race == "Goblin" && card.value == 0){
-					if(document.getElementById(card.race + "." + card.value + "." + dwarfSetter) != null){
-						document.getElementById(card.race + "." + card.value + "." + dwarfSetter).alt = "true"
-						dwarfSetter++
-						trueCount++
-						indicator = true
-					}
-			}else{
-				document.getElementById(card.race + "." + card.value).alt = "true"
-				trueCount++
-				indicator = true
+		for(var i= 0; i < handList.length; i++){
+			if(handList[i] != null){
+			document.getElementById("HandCard" + i).alt = "true"
 			}
-		})
+		}
 	}
-	if(indicator){
-		document.getElementById("mycolor").style.textShadow = "0px 0px 100px #fff, 0px 0px 100px #fff, 0px 0px 100px #fff, 0px 0px 50px #fff, 0px 0px 50px #000000, 0px 0px 50px #000000, 0px 0px 50px #000000, 0px 0px 50px #000000"
-		document.getElementById("opponentColor").style.textShadow = "none"
-	}else{
-		document.getElementById("opponentColor").style.textShadow = "0px 0px 100px #fff, 0px 0px 100px #fff, 0px 0px 100px #fff, 0px 0px 100px #fff, 0px 0px 50px #000000, 0px 0px 50px #000000, 0px 0px 50px #000000, 0px 0px 50px #000000"
-		document.getElementById("mycolor").style.textShadow = "none"
-	}
+	trueCount = 0
+
 	
 }
 //vergleicht karten wert
 function calculateWinner() {
 	console.log("getwin")
-	if (enemyCard.value > myCard.value) {
+	if (enemyCardPlayed.value > myCardPlayed.value) {
 		opWin()
 	} else {
-		if (enemyCard.value < myCard.value) {
+		if (enemyCardPlayed.value < myCardPlayed.value) {
 			myWin()
 		} else {
 			if (isTurn) {
@@ -496,14 +388,13 @@ function calculateWinner() {
 //HTML elemente
 function opWin() {
 
-	var split = document.getElementById("WinnableCard").alt.split(".")
-	var card = { race: split[0], value: split[1] }
+	var card = winableCard
 	if (round == 1) {
-		if (enemyCard.race == "Undead") {
-			enemyClaimedCards.push(enemyCard)
+		if (enemyCardPlayed.race == "Undead") {
+			enemyClaimedCards.push(enemyCardPlayed)
 		}
-		if (myCard.race == "Undead") {
-			enemyClaimedCards.push(myCard)
+		if (myCardPlayed.race == "Undead") {
+			enemyClaimedCards.push(myCardPlayed)
 		}
 		enemyHeroes.push(card)
 		myHeroes.push(deck.shift())
@@ -514,15 +405,15 @@ function opWin() {
 			document.getElementById("deckDown").style.visibility = "hidden"
 		}
 	} else {
-		if (enemyCard.race != "Dwarfs") {
-			enemyClaimedCards.push(enemyCard)
+		if (enemyCardPlayed.race != "Dwarfs") {
+			enemyClaimedCards.push(enemyCardPlayed)
 		} else {
-			myClaimedCards.push(enemyCard)
+			myClaimedCards.push(enemyCardPlayed)
 		}
-		if (myCard.race != "Dwarfs") {
-			enemyClaimedCards.push(myCard)
+		if (myCardPlayed.race != "Dwarfs") {
+			enemyClaimedCards.push(myCardPlayed)
 		} else {
-			myClaimedCards.push(myCard)
+			myClaimedCards.push(myCardPlayed)
 		}
 	}
 	console.log("opWon")
@@ -535,14 +426,13 @@ function opWin() {
 //HTML elemente
 function myWin() {
 	console.log("iWon")
-	var split = document.getElementById("WinnableCard").alt.split(".")
-	var card = { race: split[0], value: split[1] }
+	var card = winableCard
 	if (round == 1) {
-		if (enemyCard.race == "Undead") {
-			myClaimedCards.push(enemyCard)
+		if (enemyCardPlayed.race == "Undead") {
+			myClaimedCards.push(enemyCardPlayed)
 		}
-		if (myCard.race == "Undead") {
-			myClaimedCards.push(myCard)
+		if (myCardPlayed.race == "Undead") {
+			myClaimedCards.push(myCardPlayed)
 		}
 		myHeroes.push(card)
 		enemyHeroes.push(deck.shift())
@@ -553,15 +443,15 @@ function myWin() {
 			document.getElementById("deckDown").style.visibility = "hidden"
 		}
 	} else {
-		if (enemyCard.race != "Dwarfs") {
-			myClaimedCards.push(enemyCard)
+		if (enemyCardPlayed.race != "Dwarfs") {
+			myClaimedCards.push(enemyCardPlayed)
 		} else {
-			enemyClaimedCards.push(enemyCard)
+			enemyClaimedCards.push(enemyCardPlayed)
 		}
-		if (myCard.race != "Dwarfs") {
-			myClaimedCards.push(myCard)
+		if (myCardPlayed.race != "Dwarfs") {
+			myClaimedCards.push(myCardPlayed)
 		} else {
-			enemyClaimedCards.push(myCard)
+			enemyClaimedCards.push(myCardPlayed)
 		}
 	}
 	rounds++
@@ -643,14 +533,12 @@ function compareN(n1, n2, race) {
 }
 //HTML elemente gespielte karten werden gelöscht
 function deletePlayedCard() {
-	myCard = null
-	enemyCard = null
-	opCard.src = "#"
-	opCard.style.visibility = "hidden"
-	opCard.setAttribute("played", 0)
-	myCard.src = "#"
-	myCard.style.visibility = "hidden"
-	myCard.setAttribute("played", 0)
+	myCardPlayed = null
+	enemyCardPlayed = null
+	opC = document.getElementById("opPlayedCard").src = "#"
+	opC.style.visibility = "hidden"
+	myC = document.getElementById("myPlayedCard").src = "#"
+	myCardPlayed.style.visibility = "hidden"
 
 }
 //HTML elemente Handkarten werden (sollten) sortiert werden
@@ -668,8 +556,7 @@ var undead = []
 function sortHand(){
 
 	if(round == 2){
-		myHand = myHeroes
-		opCards = enemyHeroes
+		handList = myHeroes
 	}
 
 
@@ -679,7 +566,7 @@ function sortHand(){
 	knights.splice(0, knights.length)
 	undead.splice(0, undead.length)
 
-	myHand.forEach((card) => {
+	handList.forEach((card) => {
 		switch(card.race){
 			case "Doppelgaenger":
 				dop.push(card)
@@ -705,13 +592,31 @@ function sortHand(){
 	knights.sort(function(a, b){return a.value - b.value});
 	undead.sort(function(a, b){return a.value - b.value});
 	
-	myHand = dop.concat(dwarfs, goblin, knights, undead)
-	setHand()
+	handList = dop.concat(dwarfs, goblin, knights, undead)
+	showHandList()
 }
 
+
 // ALLES ANPASSEN DAS NUR KOPIERT
+//@Author Thanh Long
+var color;
+var myColor = document.getElementById("mycolor");
+var enemyColor = document.getElementById("enemyColor");
+
+var containerModal = document.getElementById("container");
+var prepareDiv = document.getElementById("prepareDIV");
+var waitOp = document.getElementById("waitOp");
+var prepareH = document.getElementById("prepareH");
+
+const userName = sessionStorage.getItem("userName");
+const lobbyName = sessionStorage.getItem("lobbyname");
+
+
+const chatBlock = document.getElementById("chat");
+const textInput = document.getElementById("text");
 
 //Chat fenster
+//TODO Brauchen wir das weil wir keine zusätzlichen sprachen haben?
 var chatOpen = true;
 const chatDiv = document.getElementById("chatdiv");
 
@@ -728,20 +633,19 @@ window.onload = function() {
 }
 
 //EVENTLISTENERs
-const sendStartBTN = document.getElementById("sendstartBTN");
+const setStartButton = document.getElementById("sendstartBTN");
 
-sendStartBTN.addEventListener("click", function(e) {
+setStartButton.addEventListener("click", function(e) {
 	e.preventDefault()
 	sendOpThatReady(sendToUserThatReady);
 })
 
-const sendMessageBTN = document.getElementById("sendBtn");
+const setMessageButton = document.getElementById("sendBtn");
 
-sendMessageBTN.addEventListener("click", function(e) {
+setMessageButton.addEventListener("click", function(e) {
 	e.preventDefault();
-	//console.log(myCards)
 	sendChatMessage();
-	//sendC();
+	//sendCards();
 });
 
 textInput.addEventListener("keypress", function(e) {
@@ -751,12 +655,12 @@ textInput.addEventListener("keypress", function(e) {
 });
 
 function connect() {
-	const username = sessionStorage.getItem("username");
-	console.log("username: " + username);
+	const userName = sessionStorage.getItem("userName");
+	console.log("userName: " + userName);
 
 	var socket = new SockJS("http://localhost:8080/private");
-	stompClient = Stomp.over(socket);
-	stompClient.connect(
+	socketClient = Stomp.over(socket);
+	socketClient.connect(
 		{},
 		function(frame) {
 			var isHost = sessionStorage.getItem("isHost");
@@ -767,7 +671,7 @@ function connect() {
 			}
 			//setConnected(true);
 			console.log("Connected: " + frame);
-			stompClient.subscribe("/topic/messages/" + username, function(response) {
+			socketClient.subscribe("/topic/messages/" + userName, function(response) {
 				console.log(response);
 
 				let data = JSON.parse(response.body);
@@ -780,7 +684,7 @@ function connect() {
 		console.log("error")
 	);
 }
-
+//MOVES
 function getFirstDeckCard() {
 	var firstCard = deck.shift();
 
@@ -788,7 +692,7 @@ function getFirstDeckCard() {
 
 }
 
-function sendC() {
+function sendCards() {
 	var firstCard = deck.shift();
 	sendMove(firstCard);
 }
