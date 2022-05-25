@@ -1,9 +1,10 @@
 package ch.model;
-
+// Autor Robin
 public enum Race {
 
-	String t = "hallo";
-	
-	String o = " i bitte di funktionir";
-	
+	Goblin,
+	Doppelgaenger,
+	Knights,
+	Undead,
+	Dwarfs
 }
