@@ -34,6 +34,7 @@ public class RESTController {
 	
 	
 	//Autor Ivan De Paola
+	//Registrierung
 	@PostMapping("user/register")
 	public Register RegisterUser(@RequestBody Register ru) {
 		if (this.uDB.findEmail(ru.geteMail()) == null && this.uDB.findUsername(ru.getUsername()) == null) {
