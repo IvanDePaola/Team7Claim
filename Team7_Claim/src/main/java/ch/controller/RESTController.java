@@ -85,7 +85,7 @@ public class RESTController {
 	
 	}
 	
-	// Autor Robin Heiz
+	// Autor Robin Heiz //noch anpassen?
 	@PostMapping("/user/changeusename")
 	public AnsMessage changeUserName(@RequestBody MsgChangeUname cm) {
 		
