@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ch.model.User;
 import ch.model.UserDB;
+import message.AnsMessage;
+import message.MsgChangeUname;
 import message.Register;
+import message.ResetPwMsg;
 
 @CrossOrigin
 @RestController
@@ -50,6 +53,51 @@ public class RESTController {
 			ru.setAnswer("username or email taken");;
 	}
 		return ru;
+	}
+	// Autor Robin Heiz
+	@PostMapping("/user/resetpassword")
+	public boolean resetPassword(@RequestBody String email) {
+		
+		User user = this.uDB.findEmail(email);
+		boolean existingUser = false;
+		if (user != null) {
+			existingUser = true;
+		}
+		return existingUser;
+	}
+	// Autor Robin Heiz
+	// TODO noch Anpassungen?
+	@PostMapping("user/passwordreset")
+	public AnsMessage resetPassword(@RequestBody ResetPwMsg rpm) {
+		User user = this.uDB.findEmail(rpm.getUserName());
+		
+		if (user != null) {
+			BCryptPasswordEncoder bcpe = new BCryptPasswordEncoder();
+			String hashPassword = bcpe.encode(rpm.getNewPW());
+			
+			user.setPassword(hashPassword);
+			this.uDB.save(user);
+			return new AnsMessage("Passwort wurde geändert");
+		} else {
+			return new AnsMessage("Versuche es nochmal");
+		}
+	
+	}
+	
+	// Autor Robin Heiz
+	@PostMapping("/user/changeusename")
+	public AnsMessage changeUserName(@RequestBody MsgChangeUname cm) {
+		
+		User user = this.uDB.findUsername(cm.getNewUserName());
+		
+		if (user != null) {
+			return new AnsMessage("Benutzername existiert bereits");
+		}
+		User us = this.uDB.findUsername(cm.getUserName());
+		us.setUserName(cm.getNewUserName());
+		this.uDB.save(us);
+		
+		return new AnsMessage("Benutzername geändert");
 	}
 
 }
