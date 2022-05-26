@@ -27,12 +27,12 @@ public class RESTController {
 	
 	//Autor Ivan De Paola
 	public void sendCode(JavaMailSender emailSender ,String to, String subject, String text) {
-		SimpleMailMessage message = new SimpleMailMessage();
-		message.setFrom("emailadresse@gmail.com");
-		message.setTo(to);
-		message.setSubject(subject);
-		message.setText(text);
-		emailSender.send(message);
+		SimpleMailMessage msg = new SimpleMailMessage();
+		msg.setFrom("emailadresse@gmail.com");
+		msg.setTo(to);
+		msg.setSubject(subject);
+		msg.setText(text);
+		emailSender.send(msg);
 	}
 	
 	
