@@ -1,0 +1,20 @@
+#hintergrund{
+	background: seagreen;
+	height:300px;
+}
+
+.gameNavigation{
+	display:flex;
+}
+
+.icon{
+	display:flex;
+	flex-direction:row;
+	cursor:pointer;
+}
+
+#languageIcon{
+	padding-left:5px;
+	color: white;
+	margin-top:3px;
+}
