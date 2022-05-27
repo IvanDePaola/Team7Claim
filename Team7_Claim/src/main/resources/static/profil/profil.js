@@ -30,4 +30,5 @@ function resetProfilePassword(){
 	if (password.value != checkPassword.value){
 			alert("Passwords don't match, please check!");
 	}
+	isFormula = false;
 }
