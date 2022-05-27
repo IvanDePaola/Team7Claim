@@ -1,6 +1,6 @@
 package ch.team;
 
-import main.java.ch.game.Game;
+import ch.game.game;
 
 public class Team7ClaimApp {
 
@@ -8,14 +8,14 @@ public class Team7ClaimApp {
 		// TODO Auto-generated method stub
 
 		//Creates our playing deck
-		Game deckList = new Game();
+		game deckList = new game();
 		deckList.createFullDeck();
 		deckList.shuffle();
 		
 		//creates a deck for the player
-		Game myCards = new Game();
+		game myCards = new game();
 		
-		Game opCards = new Game();
+		game opCards = new game();
 		
 		//Karten austeilen
 		for (int i = 1; i <= 10; i++) {
