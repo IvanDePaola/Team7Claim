@@ -5,16 +5,20 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import ch.model.LobbyList;
 import ch.model.User;
 import ch.model.UserDB;
 import message.AnsMessage;
 import message.MsgChangeUname;
 import message.Register;
 import message.ResetPwMsg;
+import message.StatMsg;
 
 @CrossOrigin
 @RestController
@@ -55,6 +59,51 @@ public class RESTController {
 	}
 		return ru;
 	}
+	
+	//Autor Ivan De Paola
+	@PostMapping("/user/sendpasswordtoken")
+	public AnsMessage sendTokenForResetPassword(@RequestBody ResetPwMsg rpm) {
+		User user = this.uDB.findEmail(rpm.geteMail());
+		if (user != null) {
+		user.setToken(user.newToken()); //Token für Verifikation	
+		String URL = "\\http://localhost:8080/login?username=\\" + user.getUserName() + "&code=" + user.getToken() + "&execute=" + 2;
+		sendCode(mailSender, user.getEmail(), "Token for Login", 
+				"Hello" + user.getUserName() + "!" + "\n" + "Click on this link to reset your password!" + URL + "\n" + "\n" );
+		return new AnsMessage("Check your emails");
+		} else {
+			return new AnsMessage("No user with this email");
+			
+		}
+	}
+	
+	//Autor Ivan De Paola
+	//Statistiken nach Spiel aktualisieren
+	@PostMapping("/statistic")
+	public AnsMessage setStatistics(@RequestBody StatMsg stat) {
+		User winner = this.uDB.findUsername(stat.getWinner());
+		User loser = this.uDB.findUsername(stat.getLoser());
+		LobbyList.clear(stat.getLobName());
+		winner.increaseWinner();
+		winner.increaseGamesPlayed();
+		loser.increaseLoser();
+		loser.increaseGamesPlayed();
+		this.uDB.save(winner);
+		this.uDB.save(loser);
+		return new AnsMessage("ok");
+	}
+	
+	//Autor Ivan De Paola
+	@GetMapping("/statistics/{username}")
+	public User showStatstic(@PathVariable("username") String username) {
+		User u1 = this.uDB.findUsername(username);
+		System.out.println(u1);
+		if(u1 != null) {
+			return u1;
+		}
+		return null;
+	}
+	
+	
 	// Autor Robin Heiz
 	@PostMapping("/user/resetpassword")
 	public boolean resetPassword(@RequestBody String email) {
