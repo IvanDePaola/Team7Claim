@@ -70,7 +70,7 @@ function sendMove(card) {
 	);
 }
 
-function sendConfirm() {
+function confirmation() {
 	var type = "confirmGame";
 	stompClient.send(
 		"/app/chat",
@@ -83,7 +83,7 @@ function sendConfirm() {
 	);
 }
 
-function sendOpTimeIsOut() {
+function timeOutEnemy() {
 	stompClient.send(
 		"/app/chat",
 		{},
@@ -96,20 +96,7 @@ function sendOpTimeIsOut() {
 	);
 }
 
-function sendGiveUp(){
-	stompClient.send(
-		"/app/chat",
-		{},
-		JSON.stringify({
-			from: username,
-			to: rival,
-			content: username,
-			type: "giveup",
-		})
-	);
-}
-
-function sendStatistics(){
+function sendStats(){
 
 	var message = {
 		wonPlayer : username,
@@ -206,7 +193,7 @@ function receiveMessage(message) {
 			outTime();
 			break;
 		case "giveup":
-			sendStatistics();
+			sendStats();
 			break;
 	}
 }
@@ -219,7 +206,7 @@ function recreiveStartGame(message) {
 	} else {
 		
 		hideModal();
-		sendConfirm();
+		confirmation();
 	}
 }
 
@@ -264,7 +251,7 @@ function checkIsReady() {
 		} else {
 			alert("Dem Gegner ist die Zeit abgelaufen");
 		}
-		sendOpTimeIsOut();
+		timeOutEnemy();
 		closeRoom();
 	} else {
 		clearInterval(timer);

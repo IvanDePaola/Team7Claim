@@ -621,7 +621,7 @@ var chatOpen = true;
 const chatDiv = document.getElementById("chatdiv");
 
 window.onload = function() {
-		var language = sessionStorage.getItem("languageBoo");
+		var language = sessionStorage.getItem("language1");
 	if(language == "en"){
 		changeLanguageToEn();
 	} else {
@@ -699,7 +699,7 @@ function sendCards() {
 
 function checkOpIsAlive() {
 	if (!opPlayed) {
-		if(	sessionStorage.getItem("languageBoo") == "en"){		
+		if(	sessionStorage.getItem("language1") == "en"){		
 		alert("Opponent ran out of time");
 		} else {
 			alert("Dem Gegner ist die Zeit abgelaufen");
@@ -723,7 +723,7 @@ function chatDivOpener() {
 //Time run out
 
 function outTime(){
-	if(	sessionStorage.getItem("languageBoo") == "en"){		
+	if(	sessionStorage.getItem("language1") == "en"){		
 		alert("You ran out of time");
 		} else {
 			alert("Dir ist die Zeit abgelaufen");
