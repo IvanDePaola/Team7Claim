@@ -31,4 +31,31 @@ function resetProfilePassword(){
 			alert("Passwords don't match, please check!");
 	}
 	isFormula = false;
-}
+
+	if (password.value.length < 6) {
+	alert("Password to short!")
+	}
+	
+	if (isFormula) {
+		var verificationMail = {
+			email: null,
+			newPw: password.value,
+			userName: userName
+		};
+	}
+	fetch(SERVERURL + "user/passwordreset", {
+		method: "POST", 
+		headers: {
+			"Content-Type": "application/json",
+			"Access-Control-Allow-Origin": "*",
+		},
+		body: JSON.stringify(verificationMail),
+	})
+		.then((response) =>response.json())
+		.then((data) => changePasswordAlert(data.answer))
+		.catch((err) => console.error(err));
+	}
+	
+	
+	
+	
