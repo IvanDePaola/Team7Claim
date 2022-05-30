@@ -1,6 +1,6 @@
 
 
-function setWinLoss(data) {
+function setGameDecision(data) {
 	console.log(data);
 	var highScore=data.highScore;
 	var win=data.win;
@@ -20,25 +20,25 @@ function setWinLoss(data) {
 }
 
 
-function setUsername(user){
+function setUname(user){
 	var profile = document.getElementById("profile");
 	username = user;
 	profile.innerText = username;
 	sessionStorage.setItem("username", username);
 }
 
-function retrieveUsername(){
+function getUname(){
 	fetch("http://localhost:8080/retrieveusername")
 		.then((response) => response.json())
 		.then((data) => setUsername(data.answer))
 		.then((data) => console.log("GET LOBBY: " + data));
 }
 
-var username = "";
+var uName = "";
 
-var statisID = document.getElementById("statisID");
+var statisticsID = document.getElementById("statisID");
 
-statisID.addEventListener("click", function(e){
+statisticsID.addEventListener("click", function(e){
 	window.location.href = "http://localhost:8080/Stats/stats.html?username=" + username;
 }) 
 
@@ -54,9 +54,9 @@ window.onload = function getParameter() {
 		}
 	}
 	
-var statisID = document.getElementById("statisID");
+var statisticsID = document.getElementById("statisID");
 
-statisID.addEventListener("click", function(e){
+statisticsID.addEventListener("click", function(e){
 	window.location.href = SERVERURL + "Stats/stats.html?username=" + username;
 }) 
 
@@ -75,7 +75,7 @@ let ctx = document.getElementById("myChart").getContext('2d');
 let labels = ['Wins', 'Loss'];
 let colorHex =['#EFCA08', '#FB3640'];
 
-function pie(win, loss){
+function diagram(win, loss){
 let myChart = new Chart(ctx, {
 	type: 'pie',
 	data: {
@@ -87,7 +87,7 @@ let myChart = new Chart(ctx, {
 	},
 })
 }
-function getStats(username){
+function getStatistics(username){
 	fetch("http://localhost:8080/statistics/" + username)
 		.then((response) => response.json())
 		.then((data) => setWinLoss(data))
