@@ -1,38 +1,32 @@
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <title>Claim</title>
 <link rel="stylesheet" href="profilCSS.css">
 </head>
-<body title="This is your profile">
-	<div class="content">
+<body title= "login">
 		<header class="navigation">
 			<nav>
 				<ul class="nav_links">
 					<li><a href="../homePage/Profile.html">Profile</a></li>
 					<li><a href="../Login/Login.html">Login</a></li>
 					<li><a href="../Lobby//lobby.html">Lobby</a></li>
-	
 				</ul>
 			</nav>
 		</header>
-		<div class="container">
-	<p>Change Password</p>
-		<label class="lang" title="changepw" id="changepwSet">Change password</label><br>
-	<input class="langi" id="newpassword" name="newpassword"  type="password"
-			placeholder="Enter new password" required><br>
-	<input class="langi" id="newpassword2" name="newpassword"  type="password"
-			placeholder="Repeat new password" required><br>
-	<button class="lang" title="changePasswordProfil" id="changePasswordProfil">Change password</button><br><br></div>
+		<div class="login">
+			<form action="#" method="POST">
+				<h1> Profil </h1>
+				<p>Change Password</p>
+				<input class="lang" title="changepw" id="newPassword" type="password" placeholder="Enter new password" required>
+				<input class="langi" title="newpassword" id="checkPassword" type="password" placeholder="Repeat new password" required>
+				<button type="submit" id="changeProfilePassword" class="lang" title="changePasswordProfil" id="changePasswordProfil"> Change Password</button>
+			</form>
 		</div>
-	</div>
-	
-
-
 	<script src="https://code.jquery.com/jquery-3.5.1.js"
 		integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
 		crossorigin="anonymous"></script>
-		
-	<script> src="profil.js"</script>
+	<script src="./profil.js"></script>
 </body >
 </html>

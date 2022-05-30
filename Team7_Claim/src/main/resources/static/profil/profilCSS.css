@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+/*Autor: Ivan De Paola */
+
 *{
 	box-sizing: border-box;
 	margin:0;
@@ -15,22 +17,6 @@
 	background-color: #333;
 
 }
-
-body{
-	height:100vh;
-	width:100%;
-	background-image:url(../homePage/wow_background.webp);
-	background-position: center;
-	background-size: cover;
-}
-
-.content {
-	text-align: center;
-    padding: 5px;
-    margin: 20px;
-    position: relative;
-    color: #fff;
- }
 
 
 li, a{
@@ -61,22 +47,67 @@ li, a{
 	background-color: #ddd;
 }
 
-.changepwSet{
-		font-size: 40px;
-	text-align: center;
-	text-transform: uppercase;
-	margin: 40px 0;
+body{
+	height:100vh;
+	width:100%;
+	background-image:url(../homePage/wow_background.webp);
+	background-position: center;
+	background-size: cover;
 }
 
-.container p {
+.login{
+	width:350px;
+	top:50%;
+	left:50%;
+	transform: translate(-50%, -50%);
+	position: absolute;
+	color: #fff;
+	
+}
+
+.login h1{
 	font-size: 40px;
 	text-align: center;
 	text-transform: uppercase;
 	margin: 40px 0;
+
 }
 
+.login p{
+	font-size: 20px;
+	margin: 15px 0;
 
+}
 
+.login input{
+	font-size: 16px;
+	width:100%;
+	padding:15px 10px;
+	border:0;
+	outline:none;
+	border-radius:5px;
 
+}
 
+.login button{
+	font-size: 18px;
+	font-weight: bold;
+	margin:20px 0;
+	padding:15px 10px;
+	width:50%;
+	border-radius:5px;
+	border:0;
 
+}
+
+.login a{
+	text-decoration: none;
+	font-size: 12px;
+}
+
+.lang{
+	margin-bottom: 10px;	
+	
+	
+
+}
