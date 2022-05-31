@@ -35,7 +35,7 @@ function chatMessanger() {
 	var text = document.getElementById("text").value;
 	var div = document.createElement("div");
 	var chatMessage = document.createElement("P");
-	chatMessage.className = "ownMessage";
+	chatMessage.className = "myMessage";
 	chatMessage.innerHTML = text;
 	div.append(chatMessage);
 	chatBlock.append(div);
@@ -125,9 +125,9 @@ function leadToLobbyList(data){
 	window.location.href = SERVERURL + "Lobbylist/lobby.html";
 }
 
-var goBack = document.getElementById("goBack");
+var return1 = document.getElementById("return1");
 
-goBack.addEventListener("click", function(e){
+return1.addEventListener("click", function(e){
 	e.preventDefault();
 	closeRoom();
 })
@@ -199,7 +199,7 @@ function receiveMessage(message) {
 }
 
 function recreiveStartGame(message) {
-	opponentColor.style.color = message.color;
+	enemyColor.style.color = message.color;
 	if (isReady === false) {
 		
 		changeModal();
@@ -215,7 +215,7 @@ function receiveChat(message) {
 	var div = document.createElement("div");
 	var chatMessage = document.createElement("P");
 	chatMessage.innerHTML = message.content;
-	chatMessage.className = "opMessage";
+	chatMessage.className = "enemyMessage";
 	div.append(chatMessage);
 	chatBlock.append(div);
 }
@@ -261,20 +261,20 @@ function checkIsReady() {
 function changeModal() {
 	containerModal.style.zIndex = 11;
 	containerModal.style.opacity = 1;
-	waitOp.style.zIndex = -1;
-	waitOp.style.opacity = 0;
+	waitForEnemy.style.zIndex = -1;
+	waitForEnemy.style.opacity = 0;
 }
 
 function hideModal() {
-	var goBack = document.getElementById("goBack");
+	var return1 = document.getElementById("return1");
 	var leaveLobby = document.getElementById("leaveLobby");
 	prepareDiv.style.zIndex = -1;
 	prepareDiv.style.opacity = 0;
 	containerModal.style.zIndex = -1;
 	containerModal.style.opacity = 0;
-	waitOp.style.zIndex = -1;
-	waitOp.style.opacity = 0;
-	goBack.style.zIndex =-1;
+	waitForEnemy.style.zIndex = -1;
+	waitForEnemy.style.opacity = 0;
+	return1.style.zIndex =-1;
 	leaveLobby.style.zIndex =-1;
 	
 }
