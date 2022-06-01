@@ -238,7 +238,15 @@ public class RESTController {
 	public AnsMessage closeLobby(@RequestBody StatMsg sm) {
 		AnsMessage ans = LobbyList.clear(sm.getLobName());
 		return ans;
+			
 	}
+	
+	// Autor Robin Heiz
+	@GetMapping("/getPlayCards/{lobbyname}")
+	public ArrayList<Card> getDeck(@PathVariable("lobbyname") String lobName) {
+		return LobbyList.
+	}
+	
 	
 
 }
