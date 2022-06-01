@@ -20,6 +20,9 @@ var myCardPlayed
 var myHand = []
 var winableCard
 
+var stompClient = null;
+var sessionId = "";
+
 //distributeCards
 function gameStart(cards){
 	var counter;
@@ -640,11 +643,6 @@ const chatContainer = document.getElementById("chatContainer");
 
 window.onload = function() {
 		var language = sessionStorage.getItem("language1");
-	if(language == "en"){
-		changeLanguageToEn();
-	} else {
-		changeLanguageToDe();
-	}
 	
 	var isHost = sessionStorage.getItem("isHost");
 	alert("CLAIM! :)")
