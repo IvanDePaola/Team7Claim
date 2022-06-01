@@ -234,7 +234,11 @@ public class RESTController {
 	}
 	
 	// Autor Robin Heiz
-	@PostMapping("")
+	@PostMapping("/closeLobby")
+	public AnsMessage closeLobby(@RequestBody StatMsg sm) {
+		AnsMessage ans = LobbyList.clear(sm.getLobName());
+		return ans;
+	}
 	
 
 }

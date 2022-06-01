@@ -188,6 +188,22 @@ function calculateMove(){
 	showScore()
 
 }
+// Lobby löschen/ Autor Robin Heiz
+function closeLobby(){
+		var msg = {
+		lobbyName: lobbyName,
+	}
+		fetch(SERVERURL + "closeLobby", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(msg),
+	})
+		.then((response) => response.json())
+		.then((data) => closeRoomHandler(data))
+		.catch((err) => console.error(err));
+}
 
 //TODO HTML elemente und translator
 function makeMove(clickedSrc, position, playable) {
