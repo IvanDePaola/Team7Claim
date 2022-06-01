@@ -1,6 +1,6 @@
 //@Author Furkan
 
-const SERVERURL = "http://localhost:8080/";
+const SERVERURL = "http://localhost:/";
 var opponent = sessionStorage.getItem("opponent");
 
 var eCards = []; 
