@@ -1,3 +1,5 @@
+/* //Authoer Furkan */
+
 * {
   margin: 0px;
   padding: 0px;
@@ -28,25 +30,38 @@
 
 #enemyCards{
 	position: relative;
-	left: -350px;
+	left:-500px;
 	width: 1300px;
 	margin-bottom: 50px;
 }
 
 #myCards1{
 	position: relative;
-	top: -250px;
-	left: -350px;
+	top: -925px;
+	left: -500px;
 	width: 1300px;
 	margin-bottom: 50px;
+}
+
+#myCardHolder{
+	position: relative;
+	left: 800px;
+	top: -280px;
+	width: 50px;
+	font-size:48px;
+	z-index:100;
+}
+
+.myHandCards{
+	transition: all .2s ease-in-out;
 }
 
 #playedCards{
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	top: -320px;
-	left: 300px;
+	top:  -150px;
+	left: 250px;
 	background: #66a6ff;
 	height: 300px;
 	width: 100px;
@@ -59,7 +74,8 @@
 
 #deck1{
 	position: relative;
-	top: -100px;
+	top: -50px;
+	left: -100px;
 }
 
 /* HOLDER UND DIVCHAT EVT LÖSCHEN!!!
@@ -75,19 +91,17 @@ border: 5px solid black;
 }
 
 #chatContainer{
-	background-color: steelblue;
+  background-color: steelblue;
   position: absolute;
   width: 25%;
   height: 600px;
   right: 0;
-  border-left: 5px solid black;
+  /*border-left: 5px solid black;
   border-top:5px solid black;
-  border-bottom: 5px solid black;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
+  border-bottom: 5px solid black; */
   overflow: hidden;
   transition: 0.5s ease;
- z-index: 50;
+  z-index: 50;
 }
 
 #openChat{
@@ -209,8 +223,8 @@ border: 5px solid black;
 }
 
 .card-bin img {
-  height: 150;
-  width: 90;
+  height: 100;
+  width: 60;
 }
 
 .deckCards{
@@ -218,9 +232,10 @@ border: 5px solid black;
 }
 
 .played-cards{
-	padding-bottom: 150;
+	padding-bottom: 1000;
+	
 }
-
+/*
 .container{
 	background: white;
 	z-index: 999;
@@ -234,7 +249,7 @@ border: 5px solid black;
 	padding: 10px;
 	top: 50px;
 }
-
+*/
 .consoleview{
 	display: flex;
 	border: 10px  black;
@@ -252,6 +267,7 @@ border: 5px solid black;
 	color:blue;
 }
 */
+/*
 #sgreen{
 	font-size:48px;
 	color:green;
@@ -276,6 +292,7 @@ border: 5px solid black;
 	font-size:48px;
 	color: orange;
 }
+*/
 /**
 #prepDIV{
 	position: fixed;
@@ -304,23 +321,6 @@ border: 5px solid black;
 	top: -15px;
 	width: 50px;
 	font-size:48px;
-}
-
-#myCardHolder{
-	position: relative;
-	left: 800px;
-	top: -280px;
-	width: 50px;
-	font-size:48px;
-	z-index:100;
-}
-
-#mycolor{
-	font-size:48px;
-}
-
-.myHands{
-	transition: all .2s ease-in-out;
 }
 
 @keyframes myHandsAni {
@@ -469,32 +469,71 @@ myHands:hover{
 	font-family:Copperplate Gothic Light;
 }
 
-#return{
+#buttonContainer{
+	display:inline-block;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	padding: 20px;
 	border-radius: 10px;
-	background-color: #8B0000;
+	background-color:navy;
 	color: white;
 	font-size: 15px;
 	cursor: pointer;
 	z-index: 200;
 }
 
+#return{
+	background-color:yellow;
+}
 #setStartButton{
-	top:10px;
+	background-color:yellow;
+}
+#leaveLobby{
+	background-color:yellow;
+}
+
+#setStartButton:hover{
+	background-color:yellowgreen;
+}
+#return:hover{
+	background-color:yellowgreen;
+}
+#leaveLobby:hover{
+	background-color:yellowgreen;
+}
+/*
+#return{
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 7px;
+	border-radius: 3px;
+	background-color: #8B0000;
+	color: white;
+	font-size: 15px;
+	cursor: pointer;
+	z-index: 200;
+}
+#setStartButton{
+	position: absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%, -50%);
 	padding: 20px;
 	border-radius: 10px;
 	background-color: #008000;
 	color: white;
 	font-size: 15px;
 	cursor: pointer;
+	
 }
+*/
 
+/*
 #leaveLobby{
-	position: absolute;
+	position: flex;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
@@ -506,6 +545,7 @@ myHands:hover{
 	cursor: pointer;
 	z-index: 199;
 }
+*/
 
 #logIcon {
 	padding-left: 5px;

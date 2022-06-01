@@ -24,7 +24,7 @@
   		<ul class="nav-links">
   		
   		
-  		
+  		<!--
   		<div id="prepDIV">
   		<div id="container" class="container">
   		<div class="consoleview">
@@ -32,6 +32,7 @@
 			<i class="fa fa-user" aria-hidden="true" id="sgreen"></i>
 			<input name="color" type="radio" id="green"/>
 		</div>
+		
   		<div class="shapeContainer">
 			<i class="fa fa-user" aria-hidden="true" id="sorange"></i>
 			<input name="color" type="radio"id="orange"/>
@@ -45,16 +46,24 @@
 			<input name="color" type="radio" id="blue"/>
 		</div>
 		</div>
-	<button title="startBtn"id="setStartButton">Start</button>
+		-->
+	
 	</div>
 	<div id="waitForEnemy">
 
 	<h1 class="langi"id="waitText">Wait for opponent</h1>
-	<button class="langi"id="return" >Close room</button>
-	<button class="langi"id="leaveLobby">Leave lobby</button>
+	
 
 	</div>
 	</div>
+	
+	
+	
+	<div id="buttonContainer" class="buttonClass">
+        <button class="langi"id="return" >Close room</button>
+		<button title="startBtn"id="setStartButton">Start</button>
+		<button class="langi"id="leaveLobby">Leave lobby</button>
+       </div>
 	
 	 <div id="gametable">
     
@@ -72,10 +81,9 @@
         </div>
       </div>
       <div id="spacer">
-      <p>hal</p></div>
+ <!--   <p>hal</p></div> -->
       <div id="cardBin" class="card-bin">
 	
-	//KARTEN EINFÜGEN UND SOUCE ANPASSEN!!
 	<div id="enemyCards" class="opponentCards">
           <img id="opCard0" src="..\ressources\CardImages\Backside.jpg" />
           <img id="opCard1" src="..\ressources\CardImages\Backside.jpg" />
@@ -93,7 +101,7 @@
         </div>
         
         <div id="enemyCardHolder">        
-         <i class="fa fa-user" aria-hidden="true" class="colorshape" id="enemyColor"></i>
+    <!--     <i class="fa fa-user" aria-hidden="true" class="colorshape" id="enemyColor"></i> -->
         </div>
         <div id="deck1" class="deckCards">
           <img id="deckBack" src="..\ressources\CardImages\Backside.jpg" />
@@ -106,25 +114,25 @@
         
         <div id="myCardHolder">
         </div>
-         <i class="fa fa-user" aria-hidden="true" id="mycolor"></i>
-           </div>
+           
         <div id="myCards1" class="myCards">
-          <img id="card0" class="myHands" src=""/>
-          <img id="card1" class="myHands" src=""/>
-          <img id="card2" class="myHands" src=""/>
-          <img id="card3" class="myHands" src=""/>
-          <img id="card4" class="myHands" src=""/>
-          <img id="card5" class="myHands" src=""/>
-          <img id="card6" class="myHands" src=""/>
-          <img id="card7" class="myHands" src=""/>
-          <img id="card8" class="myHands" src=""/>
-          <img id="card9" class="myHands" src=""/>
-          <img id="card10" class="myHands" src=""/>
-          <img id="card11" class="myHands" src=""/>
-          <img id="card12" class="myHands" src=""/>
+          <img id="card0" class="myHandCards" src=""/>
+          <img id="card1" class="myHandCards" src=""/>
+          <img id="card2" class="myHandCards" src=""/>
+          <img id="card3" class="myHandCards" src=""/>
+          <img id="card4" class="myHandCards" src=""/>
+          <img id="card5" class="myHandCards" src=""/>
+          <img id="card6" class="myHandCards" src=""/>
+          <img id="card7" class="myHandCards" src=""/>
+          <img id="card8" class="myHandCards" src=""/>
+          <img id="card9" class="myHandCards" src=""/>
+          <img id="card10" class="myHandCards" src=""/>
+          <img id="card11" class="myHandCards" src=""/>
+          <img id="card12" class="myHandCards" src=""/>
+          </div>
         </div>
       </div>
-    </div>
+  <!--  </div id="buttonContainer"> --> 
     <!--
     <div id="counter">
       <div class="myUnits">

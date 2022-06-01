@@ -1,6 +1,7 @@
 package ch.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties.Authentication;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -11,14 +12,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import ch.model.Lobby;
 import ch.model.LobbyList;
 import ch.model.User;
 import ch.model.UserDB;
 import message.AnsMessage;
+import message.JoiningLobbyMsg;
 import message.MsgChangeUname;
+import message.OpeningLobbyMsg;
 import message.Register;
 import message.ResetPwMsg;
 import message.StatMsg;
+import message.VerifyMsg;
 
 @CrossOrigin
 @RestController
@@ -148,6 +153,71 @@ public class RESTController {
 		this.uDB.save(us);
 		
 		return new AnsMessage("Benutzername geändert");
+	}
+	
+	// Autor Robin Heiz
+	
+	@PostMapping("/user/accountConfirmation")
+	public AnsMessage confirmAcc(@RequestBody VerifyMsg vm) {
+		User user = this.uDB.findUsername(vm.getUserName());
+		
+		String msg = "OK";
+		
+		if(user == null) {
+			msg = "User";
+			return new AnsMessage("Benutzer existiert nicht");
+		}
+		
+		if(user.getToken() == vm.getCode()) {
+			user.setVerifaction(true);
+			
+			this.uDB.save(user);
+		}
+		return new AnsMessage(msg);
+	}
+	
+	
+	// Autor Robin Heiz
+	
+	@GetMapping("/recoverUsername")
+	public AnsMessage recoverU(Authentication atc) {
+		return new AnsMessage(atc.getUsername());
+		
+	}
+	
+	// Autor Robin Heiz
+	
+	@GetMapping("/joinRandomLobby")
+	public AnsMessage randomLobbyJoin() {
+		AnsMessage ans = LobbyList.randoLobbyjoiner();
+		return ans;
+	}
+	
+	// Autor Robin Heiz
+	
+	@PostMapping("/openingLobby")
+	public AnsMessage openLobby(@RequestBody OpeningLobbyMsg olm) {
+		String msg;
+		
+		if(LobbyList.containsLobbyName(olm.getNameOfLobby())) {
+			msg = "name";
+		} else {
+			
+			Lobby newLobby = new Lobby(olm.getNameOfLobby(), olm.getUserName());
+			
+			LobbyList.addLobby(newLobby);
+			msg = "OK";
+		}
+		return new AnsMessage(msg);
+		
+	}
+	
+	// Autor Robin Heiz
+	@PostMapping("/joiningLobby")
+	public AnsMessage joiningLobby(@RequestBody JoiningLobbyMsg jlm) {
+		AnsMessage ans = LobbyList.LobbyAccess(jlm.getNameOfLobby(), jlm.getUserName());
+		
+		return ans;
 	}
 
 }

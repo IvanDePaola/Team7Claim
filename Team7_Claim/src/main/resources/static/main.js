@@ -10,7 +10,7 @@
 const SERVERLINK = "http://localhost:8080/";
 // name der Elemente noch hinzufügen bzw Anpassen sobald register.html fertig!!!
 function registration(){
-	var mail = document.getElementById("mail");
+	var mail = document.getElementById("email");
 	var userName = document.getElementById("user");
 	var password1 = document.getElementById("password");
 	var password2 = document.getElementById("confirmPassword");
