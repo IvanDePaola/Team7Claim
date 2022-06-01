@@ -232,5 +232,9 @@ public class RESTController {
 		}
 		return LobbyList.lobList;
 	}
+	
+	// Autor Robin Heiz
+	@PostMapping("")
+	
 
 }

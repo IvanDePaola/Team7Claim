@@ -599,8 +599,8 @@ function sortHand(){
 }
 
 
-// ALLES ANPASSEN DAS NUR KOPIERT
-//@Author Thanh Long
+// noch anpassen!
+
 var color;
 var myColor = document.getElementById("mycolor");
 var enemyColor = document.getElementById("enemyColor");
