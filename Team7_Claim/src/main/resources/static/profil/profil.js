@@ -8,7 +8,7 @@ const password1 = document.getElementById("changeProfilePassword");
 
 changeProfilePassword.addEventLister("click", (e) => {
 	e.preventDefault();
-	ResetProfilePassword();
+	resetProfilePassword();
 });
 
 var pw1 = document.getElementById("changeProfilePassword");
