@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import ch.model.Card;
 import ch.model.Lobby;
 import ch.model.LobbyList;
 import ch.model.User;
@@ -239,7 +240,17 @@ public class RESTController {
 	public AnsMessage closeLobby(@RequestBody StatMsg sm) {
 		AnsMessage ans = LobbyList.clear(sm.getLobName());
 		return ans;
+			
 	}
+	
+	// Autor  Robin Heiz
+	@GetMapping("/getPlayCards/{lobbyname}")
+	public ArrayList<Card> getDeck(@PathVariable("lobbyname") String lobName) {
+	return LobbyList.createLobby(lobName).getDeck().getDeck();
+		
+		
+	}
+	
 	
 
 }

@@ -1,4 +1,4 @@
-package ch.game;
+/*package ch.game;
 
 import java.awt.Font;
 import java.util.ArrayList;
@@ -64,9 +64,9 @@ public class game {
 	// Start vom Code fÃ¼r den 1. Spielzug
 		
 	public void submitPlayerCard(String pid, Card card, Card.value declaredValue)
-	throw InvalidRaceSubmission {
+	throws InvalidRaceSubmissionException {
 
-	ArrayList<Cards> pHand = getPlayerHand(pid);
+	ArrayList<Card> pHand = getPlayerHand(pid);
 			
 		if (card.getRace() != validRace) {
 			JLabel message = new JLabel("Invalid player move, expected Race: " + validRace);
@@ -87,7 +87,7 @@ public class game {
 	this.actual = actual;
 	this.expected = expected;
 		}
-	}
+	}*/
 	
 	//test dea obs funktioniert?
 	
