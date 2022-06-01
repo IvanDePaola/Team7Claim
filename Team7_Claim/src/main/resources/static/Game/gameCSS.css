@@ -35,10 +35,6 @@
 	margin-bottom: 50px;
 }
 
-.enemyCards:hover {
-  grid-template-columns: repeat(5, 120px);
-}
-
 #myCards1{
 	position: relative;
 	top: -925px;
