@@ -320,7 +320,7 @@ var clearCountOp = 0;
 
 //generiert path zum bild anzeigen
 function createPath(card) {
-	return "..\\ressources\\CardPhotos\\" + card.race + card.value + ".jpg";
+	return "..\\ressources\\CardImages\\" + card.race + card.value + ".jpg";
 }
 
 //HTML elemente Karte wird aus hand entfernt
