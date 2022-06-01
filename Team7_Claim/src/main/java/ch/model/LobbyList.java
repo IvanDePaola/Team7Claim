@@ -22,7 +22,7 @@ public class LobbyList {
 	public static Lobby createLobby(String name) {
 		Lobby lobby = null;
 		for (Lobby l : lobList) {
-			if (name.equals(l.getName()))
+			if (name.equals(l.getNameLobby()))
 				lobby = l;
 		}
 		return lobby;
@@ -34,43 +34,34 @@ public class LobbyList {
 	}
 	
 	//Autor Ivan De Paola
-	public static AnsMessage LobbyAccess(String name, String username, String password) {
-		String userName = "";
+	public static AnsMessage LobbyAccess(String name, String username) {
+		
 		for (Lobby lob : lobList) {
 			System.out.println("1");
-			if (lob.getName().equals(name)) {
-				System.out.println("LOBBY EXISTS ALREADY");
+			if (lob.getNameLobby().equals(name)) {
+				return new AnsMessage("Lobby exists");				
+			}else {
 				if (lob.getNames().size() == 2) {
-					return new AnsMessage("Lobby is full");
-				}
-				System.out.println("2");
+				return new AnsMessage("Lobby is full");
+			}else {
 				if(lob.getNames().get(0).equals(username)) {
 					return new AnsMessage("same");
 				}
-				if(lob.isMode()) {
-					if(lob.getPassword().equals(password)) {
-						userName = lob.getNames().get(0);
-						lob.getNames().add(username);
-						return new AnsMessage("ok", userName, lob.getName());
-					}else {
-						return new AnsMessage("password");
-					}
+			
 				}
-				if(!lob.isMode()){
-					userName = lob.getNames().get(0);
-					lob.getNames().add(username);
-					return new AnsMessage("ok", userName, lob.getName());
-				}
+				
+			}
 		}
+		return new AnsMessage("ok");
 	}
-		return new AnsMessage("not");
-	}
+		
+	
 	
 	//Autor Ivan De Paola
 	public static boolean containsLobbyName(String lobbyName) {
 		boolean newList = false;
 		for (Lobby l : lobList) {
-			if (l.getName().equals(lobbyName)) {
+			if (l.getNameLobby().equals(lobbyName)) {
 				newList = true;
 				return newList;
 			}
@@ -82,7 +73,7 @@ public class LobbyList {
 	public static AnsMessage clear(String lobbyName) {
 		Lobby lob1 = null;
 		for (Lobby l : lobList) {
-			if (lobbyName.equals(l.getName()))
+			if (lobbyName.equals(l.getNameLobby()))
 				lob1 = l;
 		}
 			if(lob1 != null) {
@@ -99,9 +90,9 @@ public class LobbyList {
 		}
 		String host = "";
 		for(Lobby l : lobList) {
-			if(!l.isMode() && l.getNames().size() == onlyPlayer) {
+			if(l.getNames().size() == onlyPlayer) {
 				host = l.getNames().get(0);
-				return new AnsMessage("ok", host, l.getName());
+				return new AnsMessage("ok", host, l.getNameLobby());
 			}
 		}
 		return new AnsMessage("Lobby private");

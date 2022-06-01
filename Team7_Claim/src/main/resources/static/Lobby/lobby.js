@@ -36,7 +36,7 @@ function createLob() {
   sessionStorage.setItem("username", uname.value);
 
   console.log(lobbyinput.value);
-  fetch(SERVERURL + "createlobby", {
+  fetch(SERVERURL + "openingLobby", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -116,7 +116,7 @@ function enterLobby(lobname) {
   };
 
   sessionStorage.setItem("username", username.value);
-  fetch(SERVERURL + "enterLobby", {
+  fetch(SERVERURL + "joiningLobby", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

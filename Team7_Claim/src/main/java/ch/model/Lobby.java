@@ -4,18 +4,18 @@ import java.util.ArrayList;
 
 public class Lobby {
 
-	private ArrayList<User> players = new ArrayList<>();
+	//private ArrayList<User> players = new ArrayList<>();
 	private ArrayList<String> uNames = new ArrayList<>();
 	private int id;
-	private String name;
-	private String password;
-	private boolean mode;
+	private String nameLobby;
+	//private String password;
+	//private boolean mode;
 	public ArrayList<String> getNames() {
 		return uNames;
 	}
 	private boolean winner;
 	public Deck deck;
-	public static int counter = 0;
+	public static int counter =0;
 	public final int MAX_PLAYERS = 2;
 	
 	//Methods
@@ -42,37 +42,28 @@ public class Lobby {
 	
 	//Constructors (Evtl. noch anpassen)
 	
-	public Lobby(String lobbyName) {
-		super();
-		this.id = counter++;
-		this.name = lobbyName;
-	}
 	
-	public Lobby(int id, String name) {
-		
-		this.id = id;
-		this.name = name;
-		deck = new Deck();
-	}
+	
+	
 
 
-	public Lobby(int id, String name, String password) {
+	public Lobby(String nameLobby, String userName) {
 		
-		this.id = id;
-		this.name = name;
-		this.password = password;
+		this.id =  counter++;
+		this.nameLobby = nameLobby;
+		this.uNames.add(userName);
 		deck = new Deck();
 	}
 	
 	//Getters and Setters
 
-	public ArrayList<User> getPlayers() {
+/*	public ArrayList<User> getPlayers() {
 		return players;
 	}
 
 	public void setPlayers(ArrayList<User> players) {
 		this.players = players;
-	}
+	}*/
 
 	public ArrayList<String> getuNames() {
 		return uNames;
@@ -90,28 +81,12 @@ public class Lobby {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNameLobby() {
+		return nameLobby;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public boolean isMode() {
-		return mode;
-	}
-
-	public void setMode(boolean mode) {
-		this.mode = mode;
+	public void setNameLobby(String name) {
+		this.nameLobby = name;
 	}
 
 	public boolean isWinner() {
