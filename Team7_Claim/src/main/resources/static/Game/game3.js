@@ -722,7 +722,7 @@ function chatDivOpener() {
 	}
 }
 
-//Time run out
+//Time run out // ANPASSEN!!!
 
 function outTime(){
 	if(	sessionStorage.getItem("language1") == "en"){		
