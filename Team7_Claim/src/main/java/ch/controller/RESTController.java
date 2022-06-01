@@ -52,14 +52,15 @@ public class RESTController {
 	//Registrierung
 	@PostMapping("user/register")
 	public Register RegisterUser(@RequestBody Register ru) {
+		System.out.println("hoi");
 		if (this.uDB.findEmail(ru.geteMail()) == null && this.uDB.findUsername(ru.getUsername()) == null) {
 			BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
 			String hashPassword = pe.encode(ru.getPassword());
 			User user = new User(ru.getUsername(),hashPassword, ru.geteMail());
 			//Neuer Token generieren für User Verifikation
-			user.setToken(user.newToken());
-			String URL = "\\http://localhost:8080/login?username=\\" + ru.getUsername() + "Your Token is: " + user.getToken() + "&execute=" + 1;
-			sendCode(mailSender, ru.geteMail(), "Mailbestätigung",  URL);
+			//user.setToken(user.newToken());
+			//String URL = "\\http://localhost:8080/login?username=\\" + ru.getUsername() + "Your Token is: " + user.getToken() + "&execute=" + 1;
+			//sendCode(mailSender, ru.geteMail(), "Mailbestätigung",  URL);
 			this.uDB.save(user);
 			ru.setAnswer("Bestätigt");
 		}else {

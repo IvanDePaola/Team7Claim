@@ -4,12 +4,10 @@ import java.util.ArrayList;
 
 public class Lobby {
 
-	//private ArrayList<User> players = new ArrayList<>();
+	private ArrayList<User> players = new ArrayList<>();
 	private ArrayList<String> uNames = new ArrayList<>();
 	private int id;
 	private String nameLobby;
-	//private String password;
-	//private boolean mode;
 	public ArrayList<String> getNames() {
 		return uNames;
 	}
@@ -47,23 +45,16 @@ public class Lobby {
 	
 
 
-	public Lobby(String nameLobby, String userName) {
+	public Lobby(String nameLobby, User userName) {
 		
 		this.id =  counter++;
 		this.nameLobby = nameLobby;
-		this.uNames.add(userName);
+		this.players.add(userName);
 		deck = new Deck();
 	}
 	
 	//Getters and Setters
 
-/*	public ArrayList<User> getPlayers() {
-		return players;
-	}
-
-	public void setPlayers(ArrayList<User> players) {
-		this.players = players;
-	}*/
 
 	public ArrayList<String> getuNames() {
 		return uNames;
