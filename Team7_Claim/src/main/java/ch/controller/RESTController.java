@@ -34,7 +34,7 @@ public class RESTController {
 	private UserDB uDB;
 	
 	
-	//Autor Ivan De Paola
+	//Autor Ivan De Paola: Source for JavaMailSender https://howtodoinjava.com/spring-core/send-email-with-spring-javamailsenderimpl-example/
 	public void sendCode(JavaMailSender emailSender ,String to, String subject, String text) {
 		SimpleMailMessage msg = new SimpleMailMessage();
 		msg.setFrom("emailadresse@gmail.com");
