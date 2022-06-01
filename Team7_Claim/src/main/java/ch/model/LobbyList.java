@@ -34,6 +34,8 @@ public class LobbyList {
 	}
 	
 	//Autor Ivan De Paola
+	//Lobby erstellen und Platz anzeigen
+	
 	public static AnsMessage LobbyAccess(String name, String username, String password) {
 		String userName = "";
 		for (Lobby lob : lobList) {
@@ -68,17 +70,18 @@ public class LobbyList {
 	
 	//Autor Ivan De Paola
 	public static boolean containsLobbyName(String lobbyName) {
-		boolean newList = false;
+		boolean contains = false;
 		for (Lobby l : lobList) {
 			if (l.getName().equals(lobbyName)) {
-				newList = true;
-				return newList;
+				contains = true;
+				return contains;
 			}
 		}
-		return newList;
+		return contains;
 	}
 	
 	//Autor Ivan De Paola
+	//Lobby löschen
 	public static AnsMessage clear(String lobbyName) {
 		Lobby lob1 = null;
 		for (Lobby l : lobList) {

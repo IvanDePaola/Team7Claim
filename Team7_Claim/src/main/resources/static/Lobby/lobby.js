@@ -3,6 +3,45 @@
 window.onload = function () {
   returnLobbyList();
 };
+
+//Lobby vom Server abrufen
+function returnLobbyList() {
+  fetch(SERVERURL + "returnLobbyList")
+    .then((response) => response.json())
+    .then((data) => createLobbyList(data))
+    .then((data) => console.log("GET LOBBY: " + data));
+}
+
+//Liste mit Verfügbaren Lobbies erstellen
+function createLobbyList(lobbyList) {
+  for (var i = 0; i < lobbyList.length; i++) {
+   
+    var x = lobbyList[i];
+    console.log(lobbyList[i].name);
+    var table = document.getElementById("lobbytble");
+    var row = table.insertRow(1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+ 
+
+    cell1.innerHTML = x.name;
+    cell2.innerHTML = x.names[0];
+
+
+    var var1 = document.createElement("BUTTON");
+    var1.setAttribute("lobname", x.name);
+    var1.innerHTML = "Join";
+    cell4.append(var1);
+    var1.addEventListener("click", function (event) {
+      console.log(event);
+      enterLobby(event.target.getAttribute("lobname"));
+    });
+  }
+}
+
+//Bestehende Lobby suchen und joinen 
 var username = document.getElementById("username");
 var lobby = document.getElementById("lobby");
 
@@ -50,7 +89,7 @@ function createLob() {
 }
 
 
-
+//Antwort vom Server
 function LobbyAnsCheck(response) {
   switch (response) {
     case "ok":
@@ -70,44 +109,8 @@ function backToGame() {
   location.replace("../Game/index.html");
 }
 
-function returnLobbyList() {
-  fetch(SERVERURL + "returnLobbyList")
-    .then((response) => response.json())
-    .then((data) => createLobbyList(data))
-    .then((data) => console.log("GET LOBBY: " + data));
-}
-
-function createLobbyList(lobbyList) {
-  for (var i = 0; i < lobbyList.length; i++) {
-   
-    var x = lobbyList[i];
-    console.log(lobbyList[i].name);
-    var table = document.getElementById("lobbytble");
-    var row = table.insertRow(1);
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-    var cell3 = row.insertCell(2);
-    var cell4 = row.insertCell(3);
- 
-
-    cell1.innerHTML = x.name;
-    cell2.innerHTML = x.names[0];
 
 
-    var var1 = document.createElement("BUTTON");
-    var1.setAttribute("lobname", x.name);
-    var1.innerHTML = "Join";
-    cell4.append(var1);
-    var1.addEventListener("click", function (event) {
-      console.log(event);
-      enterLobby(event.target.getAttribute("lobname"));
-    });
-  }
-}
-
-function welcome(name) {
-  console.log(name);
-}
 
 function enterLobby(lobname) {
   var message = {
