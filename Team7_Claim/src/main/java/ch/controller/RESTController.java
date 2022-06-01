@@ -1,5 +1,7 @@
 package ch.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties.Authentication;
 import org.springframework.mail.SimpleMailMessage;
@@ -219,5 +221,32 @@ public class RESTController {
 		
 		return ans;
 	}
+	
+	// Autor Robin Heiz
+	@GetMapping("/returnLobbyList")
+	public ArrayList <Lobby> lobList(){
+		
+		for(Lobby lob : LobbyList.lobList) {
+			System.out.println(lob.getNameLobby());
+			
+		}
+		return LobbyList.lobList;
+	}
+	
+	// Autor Robin Heiz
+	@PostMapping("/closeLobby")
+	public AnsMessage closeLobby(@RequestBody StatMsg sm) {
+		AnsMessage ans = LobbyList.clear(sm.getLobName());
+		return ans;
+			
+	}
+	
+	// Autor Robin Heiz
+	@GetMapping("/getPlayCards/{lobbyname}")
+	public ArrayList<Card> getDeck(@PathVariable("lobbyname") String lobName) {
+		return LobbyList.
+	}
+	
+	
 
 }

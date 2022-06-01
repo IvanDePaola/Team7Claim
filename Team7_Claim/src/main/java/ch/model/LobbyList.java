@@ -40,7 +40,7 @@ public class LobbyList {
 
 	//Lobby erstellen und Platz anzeigen
 	
-	public static AnsMessage LobbyAccess(String name, String username, String password) {
+	public static AnsMessage LobbyAccess(String name, String username) {
 		String userName = "";
 
 		for (Lobby lob : lobList) {

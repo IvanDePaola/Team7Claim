@@ -20,6 +20,9 @@ var myCardPlayed
 var myHand = []
 var winableCard
 
+var stompClient = null;
+var sessionId = "";
+
 //distributeCards
 function gameStart(cards){
 	var counter;
@@ -187,6 +190,22 @@ function calculateMove(){
 	}
 	showScore()
 
+}
+// Lobby löschen/ Autor Robin Heiz
+function closeLobby(){
+		var msg = {
+		lobbyName: lobbyName,
+	}
+		fetch(SERVERURL + "closeLobby", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(msg),
+	})
+		.then((response) => response.json())
+		.then((data) => console.log(data))
+		.catch((err) => console.error(err));
 }
 
 //TODO HTML elemente und translator
@@ -599,8 +618,8 @@ function sortHand(){
 }
 
 
-// ALLES ANPASSEN DAS NUR KOPIERT
-//@Author Thanh Long
+// noch anpassen!
+
 var color;
 var myColor = document.getElementById("mycolor");
 var enemyColor = document.getElementById("enemyColor");
@@ -624,11 +643,6 @@ const chatContainer = document.getElementById("chatContainer");
 
 window.onload = function() {
 		var language = sessionStorage.getItem("language1");
-	if(language == "en"){
-		changeLanguageToEn();
-	} else {
-		changeLanguageToDe();
-	}
 	
 	var isHost = sessionStorage.getItem("isHost");
 	alert("CLAIM! :)")
@@ -722,7 +736,7 @@ function chatDivOpener() {
 	}
 }
 
-//Time run out
+//Time run out // ANPASSEN!!!
 
 function outTime(){
 	if(	sessionStorage.getItem("language1") == "en"){		
@@ -731,6 +745,19 @@ function outTime(){
 			alert("Dir ist die Zeit abgelaufen");
 		}
 	window.location.href = SERVERURL + "Lobbylist/lobby.html";
+}
+function getCards() {
+	var lobbyName = sessionStorage.getItem("lobbyname");
+	fetch(SERVERURL + "getPlayCards/" + lName, {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			"Access-Control-Allow-Origin": "*",
+		},
+	})
+		.then((response) => response.json())
+		.then((data) => gameStart(data))
+		.catch((err) => console.error(err));
 }
 
 

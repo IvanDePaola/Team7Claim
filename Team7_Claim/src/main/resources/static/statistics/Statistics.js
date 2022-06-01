@@ -28,7 +28,7 @@ function setUname(user){
 }
 
 function getUname(){
-	fetch("http://localhost:8080/retrieveusername")
+	fetch("http://localhost:8080/recoverUsername")
 		.then((response) => response.json())
 		.then((data) => setUsername(data.answer))
 		.then((data) => console.log("GET LOBBY: " + data));
