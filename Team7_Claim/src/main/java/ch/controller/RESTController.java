@@ -242,7 +242,7 @@ public class RESTController {
 			
 	}
 	
-	// Autor Robin Heiz
+	// Autor  Robin Heiz
 	@GetMapping("/getPlayCards/{lobbyname}")
 	public ArrayList<Card> getDeck(@PathVariable("lobbyname") String lobName) {
 	return LobbyList.createLobby(lobName).getDeck().getDeck();
