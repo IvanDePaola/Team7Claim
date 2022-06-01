@@ -41,7 +41,7 @@ function registration(){
 }
 
 
-const registrationButton = document.getElementById("regristrieren");
+const registrationButton = document.getElementById("loginBtn");
 var userName;
 
 // registration button
