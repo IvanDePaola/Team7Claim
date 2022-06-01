@@ -204,7 +204,7 @@ function closeLobby(){
 		body: JSON.stringify(msg),
 	})
 		.then((response) => response.json())
-		.then((data) => closeRoomHandler(data))
+		.then((data) => console.log(data))
 		.catch((err) => console.error(err));
 }
 
@@ -745,6 +745,19 @@ function outTime(){
 			alert("Dir ist die Zeit abgelaufen");
 		}
 	window.location.href = SERVERURL + "Lobbylist/lobby.html";
+}
+function getCards() {
+	var lobbyName = sessionStorage.getItem("lobbyname");
+	fetch(SERVERURL + "getPlayCards/" + lName, {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			"Access-Control-Allow-Origin": "*",
+		},
+	})
+		.then((response) => response.json())
+		.then((data) => gameStart(data))
+		.catch((err) => console.error(err));
 }
 
 
