@@ -1,5 +1,7 @@
 package ch.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties.Authentication;
 import org.springframework.mail.SimpleMailMessage;
@@ -218,6 +220,17 @@ public class RESTController {
 		AnsMessage ans = LobbyList.LobbyAccess(jlm.getNameOfLobby(), jlm.getUserName());
 		
 		return ans;
+	}
+	
+	// Autor Robin Heiz
+	@GetMapping("/returnLobbyList")
+	public ArrayList <Lobby> lobList(){
+		
+		for(Lobby lob : LobbyList.lobList) {
+			System.out.println(lob.getNameLobby());
+			
+		}
+		return LobbyList.lobList;
 	}
 
 }
