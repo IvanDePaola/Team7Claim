@@ -1,3 +1,5 @@
+/* //Authoer Furkan */
+
 * {
   margin: 0px;
   padding: 0px;
@@ -33,6 +35,10 @@
 	margin-bottom: 50px;
 }
 
+.enemyCards:hover {
+  grid-template-columns: repeat(5, 120px);
+}
+
 #myCards1{
 	position: relative;
 	top: -925px;
@@ -50,7 +56,7 @@
 	z-index:100;
 }
 
-.myHands{
+.myHandCards{
 	transition: all .2s ease-in-out;
 }
 
@@ -89,19 +95,17 @@ border: 5px solid black;
 }
 
 #chatContainer{
-	background-color: steelblue;
+  background-color: steelblue;
   position: absolute;
   width: 25%;
   height: 600px;
   right: 0;
-  border-left: 5px solid black;
+  /*border-left: 5px solid black;
   border-top:5px solid black;
-  border-bottom: 5px solid black;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
+  border-bottom: 5px solid black; */
   overflow: hidden;
   transition: 0.5s ease;
- z-index: 50;
+  z-index: 50;
 }
 
 #openChat{
@@ -477,7 +481,7 @@ myHands:hover{
 	transform: translate(-50%, -50%);
 	padding: 20px;
 	border-radius: 10px;
-	background-color:coral;
+	background-color:navy;
 	color: white;
 	font-size: 15px;
 	cursor: pointer;
@@ -485,13 +489,13 @@ myHands:hover{
 }
 
 #return{
-	background-color:burlywood;
+	background-color:yellow;
 }
 #setStartButton{
-	background-color:cyan;
+	background-color:yellow;
 }
 #leaveLobby{
-	background-color:violet;
+	background-color:yellow;
 }
 
 #setStartButton:hover{
@@ -503,7 +507,6 @@ myHands:hover{
 #leaveLobby:hover{
 	background-color:yellowgreen;
 }
-
 /*
 #return{
 	top: 50%;
