@@ -139,7 +139,7 @@ leaveLobby.addEventListener("click", function(e){
 	window.location.href = SERVERURL + "Lobbylist/lobby.html";
 })
 
-function closeRoom(){
+/*function closeRoom(){
 		var message = {
 		lobbyName: lobbyName,
 	}
@@ -153,13 +153,13 @@ function closeRoom(){
 		.then((response) => response.json())
 		.then((data) => closeRoomHandler(data))
 		.catch((err) => console.error(err));
-}
+}*/
 
-function closeRoomHandler(data){
+/*function closeRoomHandler(data){
 	if(data.answer =="ok"){
 		window.location.href=SERVERURL + "Lobbylist/lobby.html"
 	}
-}
+}*/
 //HABEN WIR
 //RECEIVE METHODS
 function receiveMessage(message) {
