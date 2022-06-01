@@ -1,6 +1,6 @@
 //@Author Furkan
 
-const SERVERURL = "http://localhost:/";
+const SERVERURL = "http://localhost:8080/";
 var opponent = sessionStorage.getItem("opponent");
 
 var eCards = []; 
@@ -320,7 +320,7 @@ var clearCountOp = 0;
 
 //generiert path zum bild anzeigen
 function createPath(card) {
-	return "..\\ressources\\CardPhotos\\" + card.race + card.value + ".jpg";
+	return "..\\ressources\\CardImages\\" + card.race + card.value + ".jpg";
 }
 
 //HTML elemente Karte wird aus hand entfernt

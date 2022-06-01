@@ -95,7 +95,7 @@ function timeOutEnemy() {
 		})
 	);
 }
-
+//HABEN WIR
 function sendStats(){
 
 	var message = {
@@ -160,7 +160,7 @@ function closeRoomHandler(data){
 		window.location.href=SERVERURL + "Lobbylist/lobby.html"
 	}
 }
-
+//HABEN WIR
 //RECEIVE METHODS
 function receiveMessage(message) {
 	switch (message.type) {
