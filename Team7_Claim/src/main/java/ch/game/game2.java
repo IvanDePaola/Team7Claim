@@ -1,4 +1,4 @@
-package ch.game;
+/*package ch.game;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ import ch.model.Card;
 
 public class game2 {
 	
-	String SERVERURL = "http://localhost:8000";
+	String SERVERURL = "http://localhost:8080";
 	
 	ArrayList<Card> myCards = new ArrayList();
 	ArrayList<Card> opCards = new ArrayList();
@@ -43,7 +43,7 @@ public Cards distributeCards(cards, hand) {
 	
 }
 
-}
+}*/
 
 
 
