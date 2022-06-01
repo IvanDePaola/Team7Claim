@@ -1,3 +1,5 @@
+//@Author Furkan
+
 const SERVERURL = "http://localhost:8080/";
 var opponent = sessionStorage.getItem("opponent");
 
