@@ -89,5 +89,5 @@ public class game {
 		}
 	}
 	
-	//test dea obs funktioniert
+	//test dea obs funktioniert?
 	

@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
    
     <link rel="stylesheet" href="./gameCSS.css" />
-    <link rel="stylesheet" href="../naviBar.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link
@@ -24,15 +23,159 @@
   		</div>
   		<ul class="nav-links">
   		
-  		<div class="gameNavigation">
-  		<li class="icon"><a class="lang" title="language" href='#'>Language</a><i class="fa fa-globe" aria-hidden="true" id="languageIcon"></i></li>
-  		<div class="gamenav">
-      <li class="withIcon"><a class="lang" title="language" href='#'>Language</a><i class="fa fa-globe" aria-hidden="true" id="langIcon"></i></li>
-      <div class=subnav-content1>
-      <li id="deLa"><a>de</a></li>
-      <li id='enLa'><a>en</a></li>
+  		
+  		
+  		<div id="prepDIV">
+  		<div id="container" class="container">
+  		<div class="consoleview">
+		<div class="formContainer">
+			<i class="fa fa-user" aria-hidden="true" id="sgreen"></i>
+			<input name="color" type="radio" id="green"/>
+		</div>
+  		<div class="shapeContainer">
+			<i class="fa fa-user" aria-hidden="true" id="sorange"></i>
+			<input name="color" type="radio"id="orange"/>
+		</div>
+			<div class="shapeContainer">
+			<i class="fa fa-user" aria-hidden="true" id="sred"></i>
+			<input name="color"  type="radio" id="red"/>
+		</div>
+		<div class="shapeContainer">
+			<i class="fa fa-user" aria-hidden="true" id="sblue"></i>
+			<input name="color" type="radio" id="blue"/>
+		</div>
+		</div>
+	<button title="startBtn"id="setStartButton">Start</button>
+	</div>
+	<div id="waitForEnemy">
+
+	<h1 class="langi"id="waitText">Wait for opponent</h1>
+	<button class="langi"id="return" >Close room</button>
+	<button class="langi"id="leaveLobby">Leave lobby</button>
+
+	</div>
+	</div>
+	
+	 <div id="gametable">
+    
+      <div id="chatContainer">
+       
+        <div id="chatheader"> 
+        <h1 class="lang"title="chatCHATHEADER"id="chatCHATHEADER">Chat</h1>
+        <button id="openChat">x</button>
+        </div>
+        <div id="chat">
+        </div>
+        <div id="sendText">
+          <input type="text" id="text" placeholder="chat..."/>
+          <button class="lang" title="sendBtw"id="sendButton">Send</button>
+        </div>
       </div>
+      <div id="spacer">
+      <p>hal</p></div>
+      <div id="cardBin" class="card-bin">
+	
+	//KARTEN EINFÜGEN UND SOUCE ANPASSEN!!
+	<div id="enemyCards" class="opponentCards">
+          <img id="opCard0" src="..\ressources\CardImages\Backside.jpg" />
+          <img id="opCard1" src="..\ressources\CardImages\Backside.jpg" />
+          <img id="opCard2" src="..\ressources\CardImages\Backside.jpg" />
+          <img id="opCard3" src="..\ressources\CardImages\Backside.jpg" />
+          <img id="opCard4" src="..\ressources\CardImages\Backside.jpg" />
+          <img id="opCard5" src="..\ressources\CardImages\Backside.jpg" />
+          <img id="opCard6" src="..\ressources\CardImages\Backside.jpg" />
+          <img id="opCard7" src="..\ressources\CardImages\Backside.jpg" />
+          <img id="opCard8" src="..\ressources\CardImages\Backside.jpg" />
+          <img id="opCard9" src="..\ressources\CardImages\Backside.jpg" />
+          <img id="opCard10" src="..\ressources\CardImages\Backside.jpg" />
+          <img id="opCard11" src="..\ressources\CardImages\Backside.jpg" />
+          <img id="opCard12" src="..\ressources\CardImages\Backside.jpg" />
+        </div>
+        
+        <div id="enemyCardHolder">        
+         <i class="fa fa-user" aria-hidden="true" class="colorshape" id="enemyColor"></i>
+        </div>
+        <div id="deck1" class="deckCards">
+          <img id="deckBack" src="..\ressources\CardImages\Backside.jpg" />
+          <img id="WinnableCard" src="" />
+        </div>
+        <div id="playedCards" class="played-cards">
+          <img id="enemyPlaycard" src="" played=0 />
+          <img id="playcard" src="" played=0/>
+        </div>
+        
+        <div id="myCardHolder">
+        </div>
+         <i class="fa fa-user" aria-hidden="true" id="mycolor"></i>
+           </div>
+        <div id="myCards1" class="myCards">
+          <img id="card0" class="myHands" src=""/>
+          <img id="card1" class="myHands" src=""/>
+          <img id="card2" class="myHands" src=""/>
+          <img id="card3" class="myHands" src=""/>
+          <img id="card4" class="myHands" src=""/>
+          <img id="card5" class="myHands" src=""/>
+          <img id="card6" class="myHands" src=""/>
+          <img id="card7" class="myHands" src=""/>
+          <img id="card8" class="myHands" src=""/>
+          <img id="card9" class="myHands" src=""/>
+          <img id="card10" class="myHands" src=""/>
+          <img id="card11" class="myHands" src=""/>
+          <img id="card12" class="myHands" src=""/>
+        </div>
       </div>
+    </div>
+    <!--
+    <div id="counter">
+      <div class="myUnits">
+      <h1 class="lang"title="myFollower"class="fight">My followers</h1>
+  <div class="myDoppelgaenger">
+  <p title="myDpgaenger"class="statStyle" id="myDoppelgaenger">Doppelgänger</p>
+  <p class="statStyle2" id="myDoppelgaengerNr">""</p>
+  </div>
+  <div class="myDwarfs">
+  <p class="lang"title="myDwarfs"class="statStyle" id="myDwarfs">Dwarfs</p>
+  <p class="statStyle2" id="myDwarfsNr">""</p>
+  </div>
+    <div class="myGoblins">
+  <p class="lang"title="myGoblins"class="statStyle" id="myGoblins">Goblins</p>
+  <p class="statStyle2" id="myGoblinsNr">""</p>
+  </div>
+    <div class="myKnights">
+  <p class="lang"title="myKnights"class="statStyle" id="myKnights">Knights</p>
+  <p class="statStyle2" id="myKnightsNr">""</p>
+  </div>
+        <div class="myUndead">
+  <p class="lang"title="myUndead"class="statStyle" id="myUndead">Undead</p>
+  <p class="statStyle2" id="myUndeadNr">""</p>
+  </div>
+
+  </div>
+  <div class="enemyUnits">
+  <h1 class="lang"title="opFollower"class="fight">Opponents followers</h1>
+    	<div class="opDoppelgaenger">
+  <p title="opDbgaenger"class="statStyle" id="opDoppelgaenger"> Doppelgänger</p>
+  <p class="statStyle2" id="opDoppelgaengerNr">""</p>
+  </div>
+    	<div class="opDwarfs">
+  <p class="lang"title="opDwarfs"class="statStyle" id="opDwarfs">Dwarfs</p>
+  <p class="statStyle2" id="opDwarfsNr">""</p>
+  </div>
+  		<div class="opKnights">
+  <p class="lang"title="opKnights"class="statStyle" id="opKnights">Knights</p>
+  <p class="statStyle2" id="opKnightsNr">""</p>
+  </div>
+    	<div class="opGoblins">
+  <p class="lang"title="opGoblins"class="statStyle" id="opGoblins">Goblins</p>
+  <p class="statStyle2" id="opGoblinsNr">""</p>
+  </div>
+  		<div class="opUndead">
+  <p class="lang"title="opUndead"class="statStyle" id="opUndead">Undead</p>
+  <p class="statStyle2" id="opUndeadNr">""</p>  
+  </div> 
+  </div>
+    </div>
+        -->   
   </body>
   
   
