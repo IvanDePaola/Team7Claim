@@ -74,4 +74,45 @@ registrationButton.addEventListener("click", (m) => {
 	system.log("button")
 });
 
+//Login
+const ulogin = document.getElementById("username");
+const pwlogin = document.getElementById("pw");
+const loginbtn = document.getElementById("loginBtn");
+
+loginbtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  login();
+});
+
+function login() {
+  sessionStorage.setItem("username", ulogin.value);
+  var user = {
+    username: ulogin.value,
+    password: pwlogin.value,
+  };
+
+  fetch(SERVERURL + "user/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
+    body: JSON.stringify(user),
+  })
+    .then((response) => response.json())
+    .then((data) => handleLogin(data.answer))
+    .catch((err) => console.error(err));
+}
+
+function handleLogin(data) {
+  switch (data) {
+    case "NotOk":
+      alert("Username or password wrong");
+      break;
+    case "ok":
+      sessionStorage.setItem("username", ulogin.value);
+      location.replace("./Game/index.html");
+  }
+}
+
 
