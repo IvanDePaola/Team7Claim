@@ -40,7 +40,7 @@ function gameStart(cards){
 	});
 	
 }
-
+ 
 //**********************GAMEPLAY STUFF **************************/
 //calculateMove
 function calculateMove(){
@@ -215,7 +215,7 @@ function showMyPlaycard(source) {
 }
 //HTML karte die gegener gespielt hat
 function showEnemyPlaycard(card) {
-	enemyP = document.getElementById("opPlaycard");
+	enemyP = document.getElementById("enemyPlaycard");
 	enemyP.src = createPath(card);
 	enemyP.style.visibility = "visible"
 	enemyCardPlayed = card;	
@@ -402,7 +402,7 @@ function opWin() {
 			setWinnableCard(deck.shift())
 		} else {
 			document.getElementById("WinnableCard").style.visibility = "hidden"
-			document.getElementById("deckDown").style.visibility = "hidden"
+			document.getElementById("deckBack").style.visibility = "hidden"
 		}
 	} else {
 		if (enemyCardPlayed.race != "Dwarfs") {
@@ -440,7 +440,7 @@ function myWin() {
 			setWinnableCard(deck.shift())
 		} else {
 			document.getElementById("WinnableCard").style.visibility = "hidden"
-			document.getElementById("deckDown").style.visibility = "hidden"
+			document.getElementById("deckBack").style.visibility = "hidden"
 		}
 	} else {
 		if (enemyCardPlayed.race != "Dwarfs") {
@@ -604,8 +604,8 @@ var myColor = document.getElementById("mycolor");
 var enemyColor = document.getElementById("enemyColor");
 
 var containerModal = document.getElementById("container");
-var prepareDiv = document.getElementById("prepareDIV");
-var waitOp = document.getElementById("waitOp");
+var prepDIV = document.getElementById("prepDIV");
+var waitForEnemy = document.getElementById("waitForEnemy");
 var prepareH = document.getElementById("prepareH");
 
 const userName = sessionStorage.getItem("userName");
@@ -618,7 +618,7 @@ const textInput = document.getElementById("text");
 //Chat fenster
 //TODO Brauchen wir das weil wir keine zusätzlichen sprachen haben?
 var chatOpen = true;
-const chatDiv = document.getElementById("chatdiv");
+const chatContainer = document.getElementById("chatContainer");
 
 window.onload = function() {
 		var language = sessionStorage.getItem("language1");
@@ -633,14 +633,14 @@ window.onload = function() {
 }
 
 //EVENTLISTENERs
-const setStartButton = document.getElementById("sendstartBTN");
+const setStartButton = document.getElementById("setStartButton");
 
 setStartButton.addEventListener("click", function(e) {
 	e.preventDefault()
 	sendOpThatReady(sendToUserThatReady);
 })
 
-const setMessageButton = document.getElementById("sendBtn");
+const setMessageButton = document.getElementById("sendButton");
 
 setMessageButton.addEventListener("click", function(e) {
 	e.preventDefault();

@@ -1,5 +1,11 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
 #hintergrund{
-	background: seagreen;
+	background: #66a6ff;
 	height:300px;
 }
 
@@ -7,14 +13,546 @@
 	display:flex;
 }
 
+/*
 .icon{
 	display:flex;
 	flex-direction:row;
 	cursor:pointer;
 }
-
-#languageIcon{
-	padding-left:5px;
-	color: white;
-	margin-top:3px;
+*/
+#gametable {
+	background-color:#66a6ff;
+	position: relative;
+	height: 900px;
 }
+
+#enemyCards{
+	position: relative;
+	left: -350px;
+	width: 1300px;
+	margin-bottom: 50px;
+}
+
+#myCards1{
+	position: relative;
+	top: -250px;
+	left: -350px;
+	width: 1300px;
+	margin-bottom: 50px;
+}
+
+#playedCards{
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	top: -320px;
+	left: 300px;
+	background: #66a6ff;
+	height: 300px;
+	width: 100px;
+}
+
+#enemyPlaycard{
+	position: relative;
+	top: -100px;
+}
+
+#deck1{
+	position: relative;
+	top: -100px;
+}
+
+/* HOLDER UND DIVCHAT EVT LÖSCHEN!!!
+
+#holder{
+	display: flex;
+	flex-direction: row;
+}
+*/
+#chatdiv{
+border: 5px solid black;
+  border-top-left-radius: 25px;
+}
+
+#chatContainer{
+	background-color: steelblue;
+  position: absolute;
+  width: 25%;
+  height: 600px;
+  right: 0;
+  border-left: 5px solid black;
+  border-top:5px solid black;
+  border-bottom: 5px solid black;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  overflow: hidden;
+  transition: 0.5s ease;
+ z-index: 50;
+}
+
+#openChat{
+	background: transparent;
+	font-size: 25px;
+	padding: 5px;
+	border-color: transparent;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+#openChat:hover{
+	color: #66a6ff;
+}
+
+#chatheader {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  background-color: #1E90FF;
+
+}
+
+#chatCHATHEADER{
+	padding: 10px 10px;
+}
+
+#chat {
+  display: flex;
+  background-color:lightgray;
+  height: 480px;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+#sendText{
+	display: flex;
+ 	flex-direction: row;
+  	position: relative;
+  	background-color:#66a6ff;
+  	background: #f2f2f2;
+  	padding: 10px 5px;
+}
+
+#sendButton{
+	background-color:#1E90FF;
+  	border: none;
+  	color: white;
+  	padding: 5px 10px;
+  	text-align: center;
+ 	font-size: 16px;
+  	cursor: pointer;
+  	transition: 0.2s;
+  	height: 35px;
+}
+
+#sendButton:hover{
+	background-color: blue;
+}
+
+#text{
+	display: block;
+	position: relative;
+	width: 100%;
+	height: 35px;
+	overflow: hidden;
+  resize: both;
+ background: #f2f2f2;
+ border: none;
+
+}
+
+.enemyMessage{
+	background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+  border-radius: 10px;
+  padding: 4px;
+  width: fit-content;
+  max-width: 150px;
+  text-align: right;
+  margin-top: 15px;
+  margin-left: 20px;
+  margin-right: 5px;
+  font-size: 20px;
+  color: black;
+  word-wrap: break-word;
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  flex-direction: column-reverse;
+  overflow: auto;
+}
+
+.myMessage{
+	float: right;
+  border-radius: 10px;
+  border: 2px navy;
+  border-style: solid;
+  padding: 4px;
+  width: fit-content;
+  max-width: 150px;
+  text-align: right;
+  margin-top: 15px;
+  margin-left: 20px;
+  margin-right: 5px;
+  font-size: 20px;
+  color: black;
+  word-wrap: break-word;
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  flex-direction: column-reverse;
+  overflow: auto;
+}
+
+.card-bin{
+	padding-left: 500;
+}
+
+.card-bin img {
+  height: 150;
+  width: 90;
+}
+
+.deckCards{
+	padding-top: 150;
+}
+
+.played-cards{
+	padding-bottom: 150;
+}
+
+.container{
+	background: white;
+	z-index: 999;
+	width: 50%;
+	margin: auto;
+  	width: 50%;
+  	opacity: 0;
+  	position: relative;
+	align-items: center;
+	justify-content: center;
+	padding: 10px;
+	top: 50px;
+}
+
+.consoleview{
+	display: flex;
+	border: 10px  black;
+	opacity: 1;
+	background: white;
+	z-index: 11;
+}
+
+.formContainer{
+	padding: 10px;
+}
+/*
+.fa-user{
+	font-size:48px;
+	color:blue;
+}
+*/
+#sgreen{
+	font-size:48px;
+	color:green;
+}
+
+#sred{
+	font-size:48px;
+	color: red;
+}
+
+#hintergrung{
+	background: seagreen;
+	height: 300px;
+}
+
+#sblue{
+	font-size:48px;
+	color: blue;
+}
+
+#sorange{
+	font-size:48px;
+	color: orange;
+}
+/**
+#prepDIV{
+	position: fixed;
+	width: 100%;
+	height: 120%;
+	background: rgba(0, 0, 0, 0.5);
+	top: -50px;
+	background-size: 100%;
+	z-index: 300;
+}
+**/
+
+#waitForEnemy{
+	z-index:11;
+	opacity: 1;
+}
+
+#waitText{
+	color:white;
+	animation: ani 4s ease infinite alternate;
+}
+
+#enemyCardHolder{
+	position: relative;
+	left: 800px;
+	top: -15px;
+	width: 50px;
+	font-size:48px;
+}
+
+#myCardHolder{
+	position: relative;
+	left: 800px;
+	top: -280px;
+	width: 50px;
+	font-size:48px;
+	z-index:100;
+}
+
+#mycolor{
+	font-size:48px;
+}
+
+.myHands{
+	transition: all .2s ease-in-out;
+}
+
+@keyframes myHandsAni {
+ 1% {
+ transform: translateX(0%);
+ }
+
+  100%{
+ transform: translateY(-10%);
+ }
+}
+
+myHands:hover{
+	transform: scale(1.5);	
+}
+
+#openChat{
+	position: absolute;
+	right:0;
+}
+
+.colorshape{
+	size: 20px;
+}
+
+#enemyColor{
+	font-size:48px;
+}
+
+#card0{
+	z-index:14;
+}
+#card1{
+	z-index:13;
+}
+#card2{
+	z-index:12;
+}
+#card3{
+	z-index:11;
+}
+#card4{
+	z-index:10;
+}
+#card5{
+	z-index:9;
+}
+#card6{
+	z-index:8;
+}
+#card7{
+	z-index:7;
+}
+#card8{
+	z-index:6;
+}
+#card9{
+	z-index:5;
+}
+#card10{
+	z-index:4;
+}
+#card11{
+	z-index:3;
+}
+#card12{
+	z-index:1;
+}
+/*
+#counter{
+	border-radius: 10px;
+	border: 5px solid black;
+	align-items: center;
+	left:40px;
+	top: 35%;
+	position: absolute;
+	background-color: 	#E8E8E8;
+	z-index: 49;
+}
+
+.myDoppelgaenger{
+	display: flex;
+	padding: 5px;
+}
+
+.myDwarfs{
+	display: flex;
+		padding: 5px;
+}
+
+.myGoblins{
+	display: flex;
+		padding: 5px;
+}
+
+.myDoppelgaenger{
+	display: flex;
+		padding: 5px;
+}
+
+.myKnights{
+	display: flex;
+		padding: 5px;
+}
+
+.myUndead{
+	display: flex;
+		padding: 5px;
+}
+
+.opDoppelgaenger{
+	display: flex;
+		padding: 5px;
+}
+
+.opDwarfs{
+	display: flex;
+		padding: 5px;
+}
+
+.opGoblins{
+	display: flex;
+		padding: 5px;
+}
+
+.opUndead{
+	display: flex;
+		padding: 5px;
+}
+
+.opKnights{
+	display:flex;
+		padding: 5px;
+}
+
+.fight{
+	font-family:Copperplate Gothic Light;
+	padding: 5px;
+}
+*/
+.statStyle{
+	font-family:Copperplate Gothic Light;
+}
+
+.statStyle2{
+	font-family:Copperplate Gothic Light;
+}
+
+#return{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 20px;
+	border-radius: 10px;
+	background-color: #8B0000;
+	color: white;
+	font-size: 15px;
+	cursor: pointer;
+	z-index: 200;
+}
+
+#setStartButton{
+	top:10px;
+	padding: 20px;
+	border-radius: 10px;
+	background-color: #008000;
+	color: white;
+	font-size: 15px;
+	cursor: pointer;
+}
+
+#leaveLobby{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 20px;
+	border-radius: 10px;
+	background-color: #8B0000;
+	color: white;
+	font-size: 15px;
+	cursor: pointer;
+	z-index: 199;
+}
+
+#logIcon {
+	padding-left: 5px;
+	color: white;
+	margin-top: 3px;
+}
+
+#setIcon {
+	padding-left: 5px;
+	color: white;
+	margin-top: 3px;
+}
+
+#uIcon {
+	padding-left: 5px;
+	color: white;
+	margin-top: 3px;
+}
+
+#statIcon{
+	padding-left: 5px;
+	color: white;
+	margin-top: 3px;
+}
+
+lobbyIcon{
+	padding-left: 5px;
+	color: white;
+	margin-top: 3px;
+}
+
+#ruIcon{
+		padding-left: 5px;
+	color: white;
+	margin-top: 3px;
+}
+
+subnav-content1{
+	opacity: 0;
+	display:flex;
+	cursor: pointer;
+}
+
+.gamenav:hover .subnav-content1{
+	opacity:1;
+}
+
+
+
+
