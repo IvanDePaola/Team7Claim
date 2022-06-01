@@ -6,10 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 
 //Autor: Ivan De Paola
 @Entity
+@Table(name = "usertable")
 public class User {
 	
 	@Id
