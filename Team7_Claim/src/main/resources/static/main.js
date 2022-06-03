@@ -111,7 +111,7 @@ function handleLogin(data) {
       break;
     case "ok":
       sessionStorage.setItem("username", ulogin.value);
-      location.replace("./Game/index.html");
+      location.replace("./Game/gameHTML.html");
   }
 }
 
