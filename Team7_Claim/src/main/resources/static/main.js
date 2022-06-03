@@ -14,7 +14,7 @@ function register(){
 
 	var mail = document.getElementById("email");
 	var userName = document.getElementById("user");
-	var password1 = document.getElementById("password");
+	var password1 = document.getElementById("password1");
 	var password2 = document.getElementById("confirmPassword");
 	
 	console.log(userName.value);

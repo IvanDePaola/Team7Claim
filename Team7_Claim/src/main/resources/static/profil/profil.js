@@ -23,20 +23,20 @@ function searchUsername(){
 const SERVERURL = "http://localhost:8080/";
 
 function resetProfilePassword(){
-	var isFormula = true; //TODO isFormula ändern
+	var isForm = true; //TODO isForm ändern
 	var password = document.getElementById("newPassword");
 	var checkPassword = document.getElementById("checkPassword");
 	
 	if (password.value != checkPassword.value){
 			alert("Passwords don't match, please check!");
 	}
-	isFormula = false;
+	isForm = false;
 
 	if (password.value.length < 6) {
 	alert("Password to short!")
 	}
 	
-	if (isFormula) {
+	if (isForm) {
 		var verificationMail = {
 			email: null,
 			newPw: password.value,

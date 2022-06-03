@@ -1,4 +1,4 @@
-/*package ch.team;
+package AppClaimTeam7;
 
 import java.util.ArrayList;
 
@@ -33,4 +33,3 @@ public class Team7ClaimApplication {
 }
 	
 }
-*/

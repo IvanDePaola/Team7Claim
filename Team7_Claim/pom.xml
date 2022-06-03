@@ -15,7 +15,9 @@
 	<description>Test Projekt</description>
 	<properties>
 		<java.version>11</java.version>
-	</properties>
+    <!-- The main class to start by executing JAVA -jar -->
+    <start-class>com.mycorp.starter.Team7ClaimApplication</start-class>
+</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
